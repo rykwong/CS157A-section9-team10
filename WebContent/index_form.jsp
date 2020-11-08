@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
 <head>
@@ -13,23 +15,24 @@
 	
 	<div class="form">	
 		
-	  <form class="register-form">
+	  <form class="register-form" action="register" method="post">
 		
-		<input type="text" placeholder="user name"/>
-	    <input type="text" placeholder="password"/>
-		<input type="text" placeholder="email id"/>
-		  <button>Create</button>
+		<input type="text" placeholder="user name" name="user"/>
+	    <input type="text" placeholder="password" name="password"/>
+		<input type="text" placeholder="email id" name="email"/>
+		  <button type="submit">Create</button>
 		  
 		  <p class="message">
 		   Already Registered<a href="#">Login</a>
 		  </p>
 		  
 	   </form>
-      <form class="login-form">
-		<input type="text" placeholder="user name"/>
-	    <input type="text" placeholder="password"/>
-		<input type="text" placeholder="email id"/>
-		  <button>login</button>  
+      <form class="login-form" action="login" method="post">
+		<input type="text" placeholder="user name" name="user"/>
+	    <input type="text" placeholder="password" name="password"/>
+		<input type="text" placeholder="email id" name="email"/>
+		<br>${message}
+		  <button type="submit">login</button>  
 	 <p class="message"> 
 	      Not Registered?<a href="#">Register</a>
 	 </p>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
    <head>
       <title>Danger Alert</title>
@@ -89,7 +91,7 @@
                <div class="columnProfile">
                   <div class="card">
                      <img src="images/abt_img.jpg" alt="John" style="width:100%">
-                     <h1>John Doe</h1>
+                     <h1>${user.username}</h1>
                      <div class="card">
                         <div class="upcomeEvents"><span>Authorities Online</span></div>
                      </div>
