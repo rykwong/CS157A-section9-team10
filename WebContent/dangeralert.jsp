@@ -107,6 +107,7 @@
                </div>
                <div class="columnFeed marginRgt5 marginLft">
 			   <h1>Crime Feed</h1>
+			   <h2>${message}</h2>
                   <div class="ReportFeed">
                      <div id="menu">
                         <div class="men_tp menuGrid"> <a onclick="myReportFeed()"> <input name="searchsubmit" type="image" src="images/report.png" class="btn btnFrnd paddingLft15px"  />Report</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:20px;" /><a href=""><input name="searchsubmit" type="image" src="images/report.png" class="btn btnFrnd paddingLft15px">Photo</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:10px;" /> <a href=""><input name="searchsubmit" type="image" src="images/link.png" class="btn btnFrnd paddingLft20px">Link</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:10px;" /> <a href=""><input name="searchsubmit" type="image" src="images/poll.png" class="btn btnFrnd paddingLft15px">Poll</a></div>
@@ -114,30 +115,45 @@
                   </div>
                   <div class="ToogleReportFeed">
                      <div id="ReportFeed" class="ReportForm">
-                        <form action="#">
+                        <form action="report" method="post">
                            <label for="title">Title:</label><br>
                            <input type="text" id="title" name="title" value=""><br>
                            <label for="IncidentType">Type of Incident:</label><br>
                            <select id="IncidentType" name="IncidentType">
                               <option value=""></option>
-                              <option value="fire">Fire</option>
-                              <option value="crime">Crime</option>
-                              <option value="nc">Natural Calamity</option>
-                              <option value="accident">Accident</option>
-                              <option value="ab">Animal Abuse</option>
-                              <option value="hh">Health Hazard</option>
+                              <option value="Fire">Fire</option>
+                              <option value="Crime">Crime</option>
+                              <option value="Natural Calamity">Natural Calamity</option>
+                              <option value="Accident">Accident</option>
+                              <option value="Animal Abuse">Animal Abuse</option>
+                              <option value="Health Hazard">Health Hazard</option>
                            </select>
                            <br>
                            <label for="date">Date:</label><br>
                            <input type="date" id="date" name="date" value=""><br>
                            <label for="time">Time:</label><br>
-                           <input type="text" id="time" name="time" value=""><br>
+                           <input type="time" id="time" name="time" value=""><br>
                            <label for="location">Location:</label><br>
-                           <input type="text" id="location" name="location" value=""><br>
+                           <select id="location" name="location">
+                              <option value=""></option>
+                              <option value="San Jose">San Jose</option>
+                              <option value="Santa Clara">Santa Clara</option>
+                              <option value="Campbell">Campbell</option>
+                              <option value="Gilroy">Gilroy</option>
+                              <option value="Los Altos">Los Altos</option>
+                              <option value="Milpitas">Milpitas</option>
+                              <option value="Morgan Hill">Morgan Hill</option>
+                              <option value="Mountain View">Mountain View</option>
+                              <option value="Palo Alto">Palo Alto</option>
+                              <option value="Cupertino">Cupertino</option>
+                              <option value="Saratoga">Saratoga</option>
+                              <option value="Los Gatos">Los Gatos</option>
+                           </select>
+                           <br>
                            <label for="description">Description:</label><br>
                            <input type="text" id="description" name="description" value=""><br>
                            <label for="AI">Authorities Involved:</label><br>
-                           <input type="text" id="AI" name="title" AI=""><br><br>
+                           <input type="text" id="AI" name="ai" AI=""><br><br>
                            <input type="submit" value="Submit">
                         </form>
                      </div>

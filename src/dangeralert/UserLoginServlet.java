@@ -69,6 +69,7 @@ public class UserLoginServlet extends HttpServlet {
 	        if(result.next())
 	        {
 	        	user = new User();
+	        	user.setId(result.getInt("userid"));
 	        	user.setUsername(username);
 	        	user.setPassword(password);
 	        	user.setPhonenumber(result.getString("phonenumber"));
