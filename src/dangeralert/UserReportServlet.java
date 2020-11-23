@@ -29,6 +29,13 @@ public class UserReportServlet extends HttpServlet {
     }
 
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher view = request.getRequestDispatcher("dangeralert.jsp");
+		view.forward(request,response);
+		
+		
+	}
+    
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -52,7 +59,7 @@ public class UserReportServlet extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 //		os.print(user.getUsername());
 //		os.print(user.getPassword());
-		int status;
+		int status = 0;
 		
 		
 		try {
@@ -76,18 +83,14 @@ public class UserReportServlet extends HttpServlet {
 	        statement.setString(3, location);
 	        statement.setString(4, type);
 	        status = statement.executeUpdate();
-	        String message = "Successfully Reported";
-			request.setAttribute("message",message);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("dangeralert.jsp");
-			dispatcher.forward(request,response);
+			status = 1;
 	        
 		}
 		catch(Exception e){
 	        String message = "Reporting failed";
 			request.setAttribute("message",message);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("dangeralert.jsp");
-			dispatcher.forward(request,response);
 		}
+		response.sendRedirect("home?s=" + status);
 		
 		
 	}

@@ -39,15 +39,15 @@ public class UserLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user",user);
 			page = "dangeralert.jsp";
+			response.sendRedirect(page);
 		}
 		else
 		{
 			String message = "Invalid username/password";
 			request.setAttribute("message",message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+			dispatcher.forward(request,response);
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-		dispatcher.forward(request,response);
-		
 	}
 	
 	public User authenticate(String username,String password)
