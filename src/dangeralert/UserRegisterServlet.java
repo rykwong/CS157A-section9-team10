@@ -30,18 +30,23 @@ public class UserRegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("user");
 		String password = request.getParameter("password");
+		String phoneNumber = request.getParameter("phoneNumber");
+		String city = request.getParameter("city");
+		 
 		int status;
 		try {
 	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
 	        String dbUser = "root";
-	        String dbPassword = "9Cn99N54!";
+	        String dbPassword = "31464573";
 	 
 	        Class.forName("com.mysql.jdbc.Driver");
 	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-	        String sql = "INSERT INTO Users(username,password) VALUES(?,?)";
+	        String sql = "INSERT INTO Users(username,password,phoneNumber,city) VALUES(?,?,?,?)";
 	        PreparedStatement statement = connection.prepareStatement(sql);
 	        statement.setString(1, username);
 	        statement.setString(2, password);
+	        statement.setString(3, phoneNumber);
+	        statement.setString(4, city);
 	        status = statement.executeUpdate();
 	        String message = "Successfully Registered";
 			request.setAttribute("message",message);
