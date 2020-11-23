@@ -17,9 +17,17 @@
 		
 	  <form class="register-form" action="register" method="post">
 		
-		<input type="text" placeholder="user name" name="user"/>
-	    <input type="text" placeholder="password" name="password"/>
-		<input type="text" placeholder="email id" name="email"/>
+		<input type="text" placeholder="user name" name="user" required/>
+	    <input type="text" placeholder="password" name="password" required/>
+		<input type="text" placeholder="510-555-5555" name="phoneNumber"/>
+		<label>City</label>
+		<select name="city" required>
+		<option>San Jose</option>
+		<option>Santa Clara</option>
+		<option>Campbell</option>
+		<option>Palo Alto</option>
+		<option>Sunnyvale</option>
+		</select>
 		  <button type="submit">Create</button>
 		  
 		  <p class="message">
@@ -28,10 +36,11 @@
 		  
 	   </form>
       <form class="login-form" action="login" method="post">
-		<input type="text" placeholder="user name" name="user"/>
-	    <input type="text" placeholder="password" name="password"/>
+		<input type="text" placeholder="user name" name="user" required/>
+	    <input type="text" placeholder="password" name="password" required/>
 		<input type="text" placeholder="email id" name="email"/>
-		<br>${message}
+		<br>
+		<span class="warning">${message}</span> 
 		  <button type="submit">login</button>  
 	 <p class="message"> 
 	      Not Registered?<a href="#">Register</a>

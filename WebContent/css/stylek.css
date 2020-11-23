@@ -20,7 +20,7 @@ body{
 .form{
 	position: relative;
 	z-index: 1;
-	background: rgba(7,40,195,0.8);
+	background: rgb(91, 118, 138);
 	max-width: 360px;
 	margin: 0 auto 100px;
 	padding:45px;
@@ -51,10 +51,10 @@ body{
 	color: aliceblue;
 	font-size: 14px;
 	coursor:pointer;	
+	margin-top:10px;
 }
 
 .form button:hover,.form button:active{
-	
 	background:#24C318;
 	
 }
@@ -62,8 +62,6 @@ body{
 .form .message{
 	margin: 15px 0 0;
 	color:aliceblue;
-	
-	
 }
 
 .form .message a{
@@ -79,4 +77,14 @@ body{
 	display: none
 	
 	
+}
+
+.form label{
+	color: white;
+  	padding: 18px;
+  	margin-bottom: 25px;
+}	
+
+.form .warning{
+	color: red;
 }
