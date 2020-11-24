@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -79,7 +80,7 @@ public class SavedPostsServlet extends HttpServlet {
 	        	String title = result.getString("title");
 	        	String des = result.getString("description");
 	        	String location = result.getString("location");
-	        	String datetime = result.getString("datetime");
+	        	Timestamp datetime = result.getTimestamp("datetime");
 	        	String type = result.getString("type");
 	        	reports.add(new Report(id,title,des,location,datetime,type));
 	     

@@ -47,4 +47,16 @@ public class Report {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public Report(int id, String title, String description, String location, Timestamp datetime, String type) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.location = location;
+		this.datetime = datetime;
+		this.type = type;
+	}
+	public Report() {
+		
+	}
 }
+
