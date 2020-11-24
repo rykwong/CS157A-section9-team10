@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -67,7 +68,7 @@ public class SavedPostsServlet extends HttpServlet {
 	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
 	        String sql = "SELECT * FROM Report, Save WHERE Report.reportid = Save.reportid && Save.userid =?";
 	        PreparedStatement statement = connection.prepareStatement(sql);
-	        statement.setString(1, "1");
+	        statement.setString(1, Integer.toString(user.getId()));
 	        
 	 
 	        ResultSet result = statement.executeQuery();
@@ -86,11 +87,11 @@ public class SavedPostsServlet extends HttpServlet {
 	       
 	        connection.close();
 	        //session.setAttribute("userId", userid);
-	      for(Report item: reports) {
-	    	  out.println("report#"+item.getId());
-	    	  out.println("report#"+item.getTitle());
-	    	  out.println("\n");
-	      }
+	        
+	        request.setAttribute("reports", reports);
+	        RequestDispatcher view = request.getRequestDispatcher("SavedPosts.jsp");
+			view.forward(request,response);
+	      
 		}
 		
 		catch(SQLException e)
