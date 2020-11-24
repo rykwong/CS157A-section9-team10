@@ -77,6 +77,7 @@ public class UserLoginServlet extends HttpServlet {
 	        }
 	        
 	        connection.close();
+	        //session.setAttribute("userId", userid);
 	        return user;
 		}
 		

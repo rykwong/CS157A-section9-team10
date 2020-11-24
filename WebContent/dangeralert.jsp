@@ -172,7 +172,7 @@
 					try{
 				        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
 				        String dbUser = "root";
-				        String dbPassword = "9Cn99N54!";
+				        String dbPassword = "31464573";
 				 
 				        Class.forName("com.mysql.jdbc.Driver");
 				        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
@@ -210,7 +210,14 @@
                   </div>
                   <div class="EmptyHeight"></div>
                   <div class="card">
-                     <div class="upcomeEvents"><span>Saved Posts</span></div>
+                     <div class="upcomeEvents">
+                     <form method ="Post" action="SavedPostsServlet">
+                     <input type=hidden name="userid" value ="${user.id}">
+                    	<button type="submit">Saved Posts</button> 
+                     </form>
+                    	
+                    	
+                     </div>
                   </div>
                </div>
             </div>

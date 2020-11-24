@@ -23,11 +23,18 @@
 		<input type="text" placeholder="510-555-5555" name="phoneNumber"/>
 		<label>City</label>
 		<select name="city" required>
-		<option>San Jose</option>
-		<option>Santa Clara</option>
-		<option>Campbell</option>
-		<option>Palo Alto</option>
-		<option>Sunnyvale</option>
+		<option value="San Jose">San Jose</option>
+        <option value="Santa Clara">Santa Clara</option>
+        <option value="Campbell">Campbell</option>
+        <option value="Gilroy">Gilroy</option>
+        <option value="Los Altos">Los Altos</option>
+        <option value="Milpitas">Milpitas</option>
+        <option value="Morgan Hill">Morgan Hill</option>
+        <option value="Mountain View">Mountain View</option>
+        <option value="Palo Alto">Palo Alto</option>
+        <option value="Cupertino">Cupertino</option>
+        <option value="Saratoga">Saratoga</option>
+        <option value="Los Gatos">Los Gatos</option>
 		</select>
 		  <button type="submit">Create</button>
 		  
