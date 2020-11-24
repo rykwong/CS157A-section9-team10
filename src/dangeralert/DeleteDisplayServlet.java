@@ -8,19 +8,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class DisplayServlet
+ * Servlet implementation class DeleteDisplayServlet
  */
-@WebServlet("/home")
-public class DisplayServlet extends HttpServlet {
+@WebServlet("/DeleteDisplayServlet")
+public class DeleteDisplayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DisplayServlet() {
+    public DeleteDisplayServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,19 +29,19 @@ public class DisplayServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int status = Integer.parseInt(request.getParameter("s"));
-		
-		
 		if(status == 1) {
-	        String message = "Successfully Reported";
+	        String message = "Successfully Updated";
 			request.setAttribute("message",message);
 		}
 		else {
-			String message = "Reporting failed";
+			String message = "Failed to Update";
 			request.setAttribute("message",message);
 		}
 		
-		RequestDispatcher view = request.getRequestDispatcher("dangeralert.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("admintest.jsp");
 		view.forward(request,response);
 	}
+
+
 
 }

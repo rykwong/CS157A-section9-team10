@@ -32,8 +32,6 @@ public class UserReportServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher view = request.getRequestDispatcher("dangeralert.jsp");
 		view.forward(request,response);
-		
-		
 	}
     
 	/**
@@ -48,7 +46,7 @@ public class UserReportServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		String ai = request.getParameter("ai");
 		
-		//ServletOutputStream os = response.getOutputStream();
+		ServletOutputStream os = response.getOutputStream();
 //		os.print(title);
 //		os.print(type);
 //		os.print(date);
@@ -57,6 +55,16 @@ public class UserReportServlet extends HttpServlet {
 //		os.print(description);
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
+		/*
+		if(user==null) {
+			String message = "invalid user";
+			request.setAttribute("message",message);
+		}
+		else {
+			String message = user.getUsername();
+			request.setAttribute("message",message);
+		}
+		*/
 //		os.print(user.getUsername());
 //		os.print(user.getPassword());
 		int status = 0;
@@ -65,7 +73,7 @@ public class UserReportServlet extends HttpServlet {
 		try {
 	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
 	        String dbUser = "root";
-	        String dbPassword = "31464573";
+	        String dbPassword = "9Cn99N54!";
 	 
 	        Class.forName("com.mysql.jdbc.Driver");
 	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
@@ -83,7 +91,6 @@ public class UserReportServlet extends HttpServlet {
 	        statement.setString(3, location);
 	        statement.setString(4, type);
 	        status = statement.executeUpdate();
-			status = 1;
 	        
 		}
 		catch(Exception e){
