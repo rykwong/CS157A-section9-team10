@@ -1,5 +1,6 @@
 package dangeralert;
 
+
 import java.sql.Timestamp;
 
 public class Report {
@@ -43,9 +44,4 @@ public class Report {
 	public String getType() {
 		return type;
 	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	
-	
 }
