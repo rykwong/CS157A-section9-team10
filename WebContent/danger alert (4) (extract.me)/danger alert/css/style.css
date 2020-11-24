@@ -1,0 +1,566 @@
+/* CSS Document */
+
+body {
+	padding: 0px;
+	margin: 0px;
+}
+
+img {
+	border: 0px;
+}
+
+.flt {
+	float: left;
+}
+
+#wh_bg {
+	width: 100%;
+	margin: auto;
+}
+
+#bg_bg {
+	width: 100%;
+	float: left;
+}
+
+
+/*top panel starts here*/
+
+#top {
+	width: 100%;
+	float: left;
+}
+
+#topMenu {
+	width: 100%;
+	float: left;
+	background: darkturquoise;
+}
+
+.paddingLft30px {
+	padding-left: 30px;
+}
+
+.paddingLft45px {
+	padding-left: 45px;
+}
+
+.paddingLft60px {
+	padding-left: 60px;
+}
+
+.paddingLft90px {
+	padding-left: 90px;
+}
+
+.paddingLft15px {
+	padding-left: 15px;
+}
+
+.paddingLft10px {
+	padding-left: 10px;
+}
+
+.marginRgt5 {
+	margin-right: 5%;
+}
+
+.marginLft {
+	margin-left: 5%;
+}
+
+.btnSearch {
+	width: 15px;
+	margin-bottom: -5px;
+}
+
+.btnFrnd,
+.btnMsg,
+.btnBell {
+	width: 30px;
+	margin-bottom: -5px;
+}
+
+.displayInline {
+	display: inline-block;
+}
+
+button {
+	border: none;
+	outline: 0;
+	display: inline-block;
+	padding: 8px;
+	color: white;
+	background-color: #000;
+	text-align: center;
+	cursor: pointer;
+	width: 100%;
+	font-size: 18px;
+}
+
+a {
+	text-decoration: none;
+	font-size: 22px;
+	color: black;
+}
+
+.upcomeEvents {
+	font: caption;
+	color: blue;
+	background-color: darkgray;
+	border-bottom: 1px solid darkgray;
+	height: 40px;
+	margin-top: 10px;
+	padding-top: 10px;
+}
+
+.todayEvents {
+	font: bold;
+	color: white;
+	background-color: blue;
+	border-bottom: 1px solid blue;
+	height: 25px;
+	padding-top: 3px;
+}
+
+.ReportForm {
+	height: 60%;
+	display: none;
+}
+
+button:hover,
+a:hover {
+	opacity: 0.7;
+}
+
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	max-width: 300px;
+	margin: auto;
+	text-align: center;
+	font-family: arial;
+}
+
+.ReportFeed {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	margin: auto;
+	text-align: center;
+	font-family: arial;
+}
+
+.ToogleReportFeed {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	margin: auto;
+	text-align: center;
+	font-family: arial;
+	margin-top: 10%;
+}
+
+.ReportLink {
+	display: inline-block;
+	color: mediumblue;
+	width: 20%;
+	padding: 10px 0px 0px 0px;
+	margin-left: -5%;
+}
+
+.reportClr {
+	background-color: gray;
+}
+
+#dateDisplay {
+	text-align: center;
+}
+
+.ReportFeed {
+	width: 100%;
+	display: table-row-group;
+	float: left;
+}
+
+.title {
+	color: grey;
+	font-size: 18px;
+}
+
+#floatRht {
+	float: right;
+}
+
+.men_feed {
+	width: 100%;
+	float: left;
+	display: inline;
+	padding: 24px 0px 0px 70px;
+}
+
+.EmptyHeight {
+	height: 165px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+
+/* Create three equal columns that floats next to each other */
+
+.columnProfile {
+	float: left;
+	width: 20%;
+	padding: 10px;
+	/*height: 65%;*/
+	/* Should be removed. Only for demonstration */
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.columnFeed {
+	float: left;
+	width: 45%;
+	height: 80%;
+	/* Should be removed. Only for demonstration */
+	margin-top: 2%;
+}
+
+.menuGrid {
+	width: 90% !important;
+}
+
+.columnEvents {
+	float: left;
+	width: 20%;
+	height: 80%;
+	/* Should be removed. Only for demonstration */
+	margin-right: 2%;
+}
+
+
+/* Clear floats after the columns */
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: Grey;
+	color: white;
+	text-align: center;
+}
+
+.navbar {
+	overflow: hidden;
+}
+
+.navbar a {
+	float: left;
+	font-size: 16px;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.dropdown {
+	float: left;
+	overflow: hidden;
+}
+
+.dropdown .dropbtn {
+	font-size: 16px;
+	border: none;
+	outline: none;
+	color: white;
+	padding: 14px 16px;
+	background-color: inherit;
+	font-family: inherit;
+	margin: 0;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+	background-color: grey;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.top1 {
+	width: 500px;
+	float: left;
+	height: 176px;
+	display: inline;
+	background: url(../images/top1.jpg) no-repeat;
+}
+
+.logo {
+	float: left;
+	margin: 89px 0px 0px -159px;
+	position: relative;
+}
+
+.top2 {
+	width: 500px;
+	float: left;
+	height: 176px;
+	display: inline;
+	background: url(../images/top2.jpg) no-repeat;
+}
+
+#menu {
+	width: 80%;
+	float: right;
+	height: 56px;
+}
+
+.men_tp {
+	width: 855px;
+	float: left;
+	display: inline;
+	padding: 24px 0px 0px 70px;
+}
+
+.men_tp a {
+	float: left;
+	color: #686666;
+	font: bold 12px/15px tahoma;
+	text-decoration: none;
+	margin-left: 25px;
+}
+
+
+/*top panel ends here*/
+
+
+/*content panel starts here*/
+
+#content {
+	width: 100%;
+	float: left;
+}
+
+#part1 {
+	width: 865px;
+	float: left;
+	padding-left: 65px;
+}
+
+#img_para {
+	width: 865px;
+	float: left;
+	margin-top: 10px;
+	padding-bottom: 15px;
+	background: #ECF6F9 url(../images/img_bt.gif) no-repeat bottom;
+}
+
+.img_txt {
+	float: left;
+	position: relative;
+	margin: -10px 0px 0px 10px;
+}
+
+.img_tp {
+	width: 865px;
+	float: left;
+	background: url(../images/img_tp.gif) no-repeat;
+	height: 15px;
+}
+
+#con {
+	width: 865px;
+	float: left;
+	background: url(../images/part_bg.gif) repeat-y;
+}
+
+.con1 {
+	width: 560px;
+	float: left;
+	display: inline;
+	padding-left: 4px;
+	padding-top: 10px;
+}
+
+.con2 {
+	width: 280px;
+	float: left;
+	padding-left: 20px;
+	display: inline;
+	padding-top: 10px;
+}
+
+.txt {
+	width: 560px;
+	float: left;
+	margin-top: 35px;
+	color: #515455;
+	font: 12px/18px georgia;
+}
+
+.wor {
+	float: right;
+	position: relative;
+	margin: -30px 10px 0px 0px;
+}
+
+#part2 {
+	width: 100%;
+	float: left;
+}
+
+#cen {
+	width: 640px;
+	float: left;
+	height: 237px;
+	background: #009BD9;
+}
+
+#cen1 {
+	width: 360px;
+	float: left;
+	height: 237px;
+	background: #2DACE0;
+}
+
+#abt {
+	width: 575px;
+	float: left;
+	background: #009BD9;
+	padding-left: 65px;
+	padding-bottom: 6px;
+}
+
+#abt_prt {
+	width: 345px;
+	float: left;
+	background: #2DACE0;
+	padding-left: 15px;
+}
+
+.date {
+	width: 246px;
+	float: left;
+	font: bold 12px/18px Tahoma;
+	color: #515455;
+	margin: 10px 0px 0px 10px;
+	text-decoration: underline;
+}
+
+.date_txt {
+	width: 246px;
+	color: #515455;
+	float: left;
+	font: 12px/16px georgia;
+	text-decoration: underline;
+	margin: 10px 0px 0px 20px;
+}
+
+.cont {
+	float: left;
+	margin: 10px 0px 0px 0px;
+}
+
+.con_txt {
+	width: 211px;
+	color: #515455;
+	float: left;
+	font: 12px/16px georgia;
+	margin: 10px 0px 0px 20px;
+}
+
+.abt_txt {
+	width: 550px;
+	float: left;
+	margin-top: 15px;
+	color: #FFF;
+	font: 12px/18px georgia;
+}
+
+#link {
+	width: 257px;
+	float: left;
+	padding: 10px 0px 0px 15px;
+}
+
+#link a {
+	float: left;
+	width: 257px;
+	background: url(../images/arr.gif) no-repeat left;
+	padding-left: 15px;
+	margin-top: 7px;
+	color: #FFF;
+	font: 12px/18px georgia;
+}
+
+
+/*content panel ends here*/
+
+
+/*footer panel starts here*/
+
+#footer {
+	width: 100%;
+	float: left;
+	padding-bottom: 30px;
+	background: url(../images/ft_bg.gif) repeat-x;
+}
+
+#foot {
+	width: 800px;
+	float: left;
+	padding: 35px 0px 0px 150px;
+	color: #D4D0D0;
+	font: 12px/18px georgia;
+}
+
+#foot a {
+	width: 70px;
+	float: left;
+	color: #D4D0D0;
+	font: 12px/18px georgia;
+	text-decoration: none;
+	margin-left: 12px;
+}
+
+.copy {
+	width: 700px;
+	float: left;
+	margin: 10px 0px 0px 200px;
+	color: #D4D0D0;
+	font: 12px/18px georgia;
+}
+
+.copy a {
+	color: #D4D0D0;
+	font: 12px/18px georgia;
+}
+
+
+/*footer panel ends here*/
