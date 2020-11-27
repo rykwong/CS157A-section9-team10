@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*" %>
+<%@ page import ="java.util.*" %>
+
 <html>
    <head>
       <title>Danger Alert</title>
       <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
       <link rel="stylesheet" type="text/css" href="css/style.css" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <script>
          window.onload = function () { 
          var today = new Date();
@@ -23,7 +26,7 @@
          }
       </script>
    </head>
-   <body>
+<body>
       <div id="wh_bg">
          <div id="bg_bg">
             <div id="top" style="display:none">
@@ -160,7 +163,8 @@
                      </div>
                   </div>
 				  <br>
-				  	<form action="dangeralert.jsp" method="GET">
+				  <div>
+						<form action="dangeralert.jsp" method="GET">
 				  		<input type="checkbox" id="San Jose" name="filter" value="San Jose">
 				  		<label for="San Jose">San Jose</label>
 				  		<input type="checkbox" id="Santa Clara" name="filter" value="Santa Clara">
@@ -186,16 +190,22 @@
 				  		<input type="checkbox" id="Los Gatos" name="filter" value="Los Gatos">
 				  		<label for="Los Gatos">Los Gatos</label>
 				  		<input type="submit" value="Filter">
-				  	</form>
-					<table border="1">
-					<tr>
-					<td>User</td>
-					<td>Title</td>
-					<td>Description</td>
-					<td>Location</td>
-					<td>Date/Time</td>
-					<td>Type</td>
-					</tr>
+				  		</form>
+				  	</div>
+					<table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					   		<th scope="col">User</th>
+					      <th scope="col">Id</th>
+					      <th scope="col">Title</th>
+					      <th scope="col">Description</th>
+					       <th scope="col">Location</th>
+					      <th scope="col">Type</th>
+					       <th scope="col">Date&Time</th>
+					    </tr>
+					  </thead>
+
+
 					<%
 					try{
 						String[] city = request.getParameterValues("filter");
@@ -214,21 +224,48 @@
 					        filters += "location='" + city[city.length-1] + "'";
 					        sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users WHERE " + filters + " ORDER BY datetime DESC LIMIT 20";
 				        }
+				        ArrayList<Integer> reportsId = (ArrayList<Integer>)session.getAttribute("reportsId");
+				        ArrayList<Integer> myOwnReportsId = (ArrayList<Integer>)session.getAttribute("myOwnReportsId");
+
 				        Statement statement = connection.createStatement();
 				        ResultSet result = statement.executeQuery(sql);
+				       
+				 
 				        
 						while(result.next()){
+							int reportId = result.getInt("reportid");
 						%>
 						<tr>
 						<td><%=result.getString("username")%></td>
+						<th scope="row"><%=reportId %></th>
 						<td><%=result.getString("title") %></td>
 						<td><%=result.getString("description") %></td>
 						<td><%=result.getString("location") %></td>
 						<td><%=result.getTimestamp("datetime") %></td>
 						<td><%=result.getString("type") %></td>
+						<% if(!reportsId.contains(reportId)){ %>
+						<form method ="Post" action="SavePostButtonServlet"> 
+						<input type="hidden" id="reportId" name="reportId" value="<%=reportId %>">
+						<td>
+						<button type="submit" class="btn btn-secondary" onclick="alert('Post has saved.')">Save</button>
+						</td>
+						<%} %>
+						</form>
+						
+						<% if(myOwnReportsId.contains(reportId)){ %>
+						<form method ="Post" action="DeleteButtonServlet"> 
+						<input type="hidden" id="reportId" name="reportId" value="<%=reportId %>">
+						<td>
+						<button type="button" class="btn btn-danger" onclick="alert('Post has deleted.')" >Delete</button> 
+						</td>
+						
+						<%} %>
+						</form>
+						
+						
 						</tr>
 						<%
-						}
+						}			
 						connection.close();
 						} catch (Exception e) {
 						e.printStackTrace();
@@ -237,6 +274,8 @@
 					</table>
 				 
                </div>
+               
+            
                <div class="columnEvents" id="floatRht">
                   <div>
                      <p id="dateDisplay">&nbsp;</p>
@@ -248,6 +287,12 @@
                   <div class="EmptyHeight"></div>
                   <div class="card">
                      <div class="upcomeEvents"><span>Saved Posts</span></div>
+                     <div class="upcomeEvents">
+                     <form method ="Post" action="SavedPostsServlet">
+                    	<button type="submit">Saved Posts</button> 
+                     </form>
+
+                     </div>
                   </div>
                </div>
             </div>

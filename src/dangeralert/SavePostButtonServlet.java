@@ -7,8 +7,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.lang.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,16 +21,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class SavedPostsServlet
+ * Servlet implementation class SavePostButtonServlet
  */
-@WebServlet("/SavedPostsServlet")
-public class SavedPostsServlet extends HttpServlet {
+@WebServlet("/SavePostButtonServlet")
+public class SavePostButtonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SavedPostsServlet() {
+    public SavePostButtonServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,10 +41,6 @@ public class SavedPostsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter out = response.getWriter();
-		//HttpSession session = request.getSession();
-		//User user = (User)session.getAttribute("user");
-		//out.println(user.getUsername());
 	}
 
 	/**
@@ -54,64 +52,39 @@ public class SavedPostsServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
-		//out.println("userid: "+ user.getId());
+		String userId = Integer.toString(user.getId());
+		String reportId = request.getParameter("reportId");
 		
-		
+	
 		try {
-			//out.println("in try");
 	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
 	        String dbUser = "root";
 	        String dbPassword = "9Cn99N54!";
 	 
 	        Class.forName("com.mysql.jdbc.Driver");
 	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-	        String sql = "SELECT * FROM Report, Save WHERE Report.reportid = Save.reportid && Save.userid =?";
-	        PreparedStatement statement = connection.prepareStatement(sql);
-	        statement.setString(1, Integer.toString(user.getId()));
-	        //statement.setString(1, "");
-	        
-	 
-	        ResultSet result = statement.executeQuery();
-	        ArrayList<Report> reports = new ArrayList<>();
-	        while(result.next())
-	        {
-	        	int id = result.getInt("reportid");
-	        	String title = result.getString("title");
-	        	String des = result.getString("description");
-	        	String location = result.getString("location");
-	        	Timestamp datetime = result.getTimestamp("datetime");
-	        	String type = result.getString("type");
-	        	reports.add(new Report(id,title,des,location,datetime,type));
-	     
-	        }
-	       
-	        connection.close();
-	        //session.setAttribute("userId", userid);
-	        
-	        request.setAttribute("reports", reports);
-	        RequestDispatcher view = request.getRequestDispatcher("SavedPosts.jsp");
-			view.forward(request,response);
+	        String sql = "INSERT INTO Save (userid,reportid) VALUES ("+userId+","+reportId+");";
+	        Statement statement = connection.createStatement();
 	      
-		}
+	        int status = statement.executeUpdate(sql);
+	              
+	        connection.close();
+	        ArrayList<Integer> reportsId = (ArrayList<Integer>)session.getAttribute("reportsId");
+	        reportsId.add(Integer.parseInt(reportId));
+	        session.setAttribute("reportsId", reportsId);
+	        
+		}	
 		
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			out.println("DB EEROR");
 			//return null;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			out.println("DB EEROR");
 			//return null;
 		}
 		
-		
-		
-		
-		
-		
-		
-		
+		response.sendRedirect("dangeralert.jsp");
 	}
 
 }

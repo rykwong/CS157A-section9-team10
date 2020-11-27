@@ -46,7 +46,6 @@
       <form class="login-form" action="login" method="post">
 		<input type="text" placeholder="user name" name="user" required/>
 	    <input type="text" placeholder="password" name="password" required/>
-		<input type="text" placeholder="email id" name="email"/>
 		<br>
 		<span class="warning">${message}</span> 
 		  <button type="submit">login</button>  

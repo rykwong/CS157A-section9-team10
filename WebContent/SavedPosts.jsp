@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import= "dangeralert.Report" %>
 <%@ page import= "java.util.ArrayList" %>
+<%@ page import = "java.sql.*" %>
 
 <% ArrayList reports = (ArrayList)request.getAttribute("reports"); %>
 <!DOCTYPE html>
@@ -36,23 +37,21 @@
 			<td><%=report.getDescription()%></td>
 			<td><%=report.getLocation()%></td>
 			<td><%=report.getType()%></td>
-			<td><%=report.getDatetime()%></td>
+			<% Timestamp ts = report.getDatetime(); %>
+			<td><%=ts.toString() %></td>
 		</tr>
 	<% }%>
 	<%}else{ %>
 	<div class="jumbotron">
 	  <h1 class="display-4">Sad,You have not saved any reports</h1>
 	  <p class="lead">Please come back after you saved some reports</p>
-	  <p class="lead">
-	    <a class="btn btn-primary btn-lg" href="dangeralert.jsp" role="button">Home Page</a>
-	  </p>
 	</div>
 	<%} %>
     
   </tbody>
 </table>
-
-
-
+<p class="lead">
+	    <a class="btn btn-primary btn-lg" href="dangeralert.jsp" role="button">Home Page</a>
+	  </p>
 </body>
 </html>
