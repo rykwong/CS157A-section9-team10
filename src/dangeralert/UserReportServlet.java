@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -68,7 +69,7 @@ public class UserReportServlet extends HttpServlet {
 //		os.print(user.getUsername());
 //		os.print(user.getPassword());
 		int status = 0;
-		
+		int status1 = 0;
 		
 		try {
 	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
@@ -91,7 +92,23 @@ public class UserReportServlet extends HttpServlet {
 	        statement.setString(3, location);
 	        statement.setString(4, type);
 	        status = statement.executeUpdate();
-	        
+	        sql = "SELECT reportid FROM Report WHERE title=? AND description=? AND location=? AND type=?";
+	        statement = connection.prepareStatement(sql);
+	        statement.setString(1, title);
+	        statement.setString(2, description);
+	        statement.setString(3, location);
+	        statement.setString(4, type);
+	        ResultSet result = statement.executeQuery();
+	        int reportid = 0;
+	        if(result.next())
+	        {
+	        	reportid = result.getInt("reportid");
+	        }
+	        sql = "INSERT INTO Reports(userid,reportid) VALUES(?,?)";
+	        statement = connection.prepareStatement(sql);
+	        statement.setInt(1,user.getId());
+	        statement.setInt(2,reportid);
+	        status = statement.executeUpdate();
 		}
 		catch(Exception e){
 	        String message = "Reporting failed";

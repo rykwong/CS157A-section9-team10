@@ -160,8 +160,36 @@
                      </div>
                   </div>
 				  <br>
+				  	<form action="dangeralert.jsp" method="GET">
+				  		<input type="checkbox" id="San Jose" name="filter" value="San Jose">
+				  		<label for="San Jose">San Jose</label>
+				  		<input type="checkbox" id="Santa Clara" name="filter" value="Santa Clara">
+				  		<label for="Santa Clara">Santa Clara</label>
+				  		<input type="checkbox" id="Campbell" name="filter" value="Campbell">
+				  		<label for="Campbell">Campbell</label>
+				  		<input type="checkbox" id="Gilroy" name="filter" value="Gilroy">
+				  		<label for="Gilroy">Gilroy</label>
+				  		<input type="checkbox" id="Los Altos" name="filter" value="Los Altos">
+				  		<label for="Los Altos">Los Altos</label>
+				  		<input type="checkbox" id="Milpitas" name="filter" value="Milpitas">
+				  		<label for="Milpitas">Milpitas</label>
+				  		<input type="checkbox" id="Morgan Hill" name="filter" value="Morgan Hill">
+				  		<label for="Morgan Hill">Morgan Hill</label>
+				  		<input type="checkbox" id="Mountain View" name="filter" value="Mountain View">
+				  		<label for="Mountain View">Mountain View</label>
+				  		<input type="checkbox" id="Palo Alto" name="filter" value="Palo Alto">
+				  		<label for="Palo Alto">Palo Alto</label>
+				  		<input type="checkbox" id="Cupertino" name="filter" value="Cupertino">
+				  		<label for="Cupertino">Cupertino</label>
+				  		<input type="checkbox" id="Saratoga" name="filter" value="Saratoga">
+				  		<label for="Saratoga">Saratoga</label>
+				  		<input type="checkbox" id="Los Gatos" name="filter" value="Los Gatos">
+				  		<label for="Los Gatos">Los Gatos</label>
+				  		<input type="submit" value="Filter">
+				  	</form>
 					<table border="1">
 					<tr>
+					<td>User</td>
 					<td>Title</td>
 					<td>Description</td>
 					<td>Location</td>
@@ -170,20 +198,29 @@
 					</tr>
 					<%
 					try{
+						String[] city = request.getParameterValues("filter");
 				        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
 				        String dbUser = "root";
-				        String dbPassword = "31464573";
+				        String dbPassword = "9Cn99N54!";
 				 
 				        Class.forName("com.mysql.jdbc.Driver");
 				        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-				        
-				        String sql = "SELECT * FROM Report ORDER BY datetime DESC";
+				        String sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users ORDER BY datetime DESC LIMIT 20";
+				        if(city != null){
+					        String filters = "";
+					        for(int i = 0; i < city.length-1;i++){
+					        	filters += "location='"+ city[i] + "' OR ";
+					        }
+					        filters += "location='" + city[city.length-1] + "'";
+					        sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users WHERE " + filters + " ORDER BY datetime DESC LIMIT 20";
+				        }
 				        Statement statement = connection.createStatement();
 				        ResultSet result = statement.executeQuery(sql);
 				        
 						while(result.next()){
 						%>
 						<tr>
+						<td><%=result.getString("username")%></td>
 						<td><%=result.getString("title") %></td>
 						<td><%=result.getString("description") %></td>
 						<td><%=result.getString("location") %></td>
@@ -210,14 +247,7 @@
                   </div>
                   <div class="EmptyHeight"></div>
                   <div class="card">
-                     <div class="upcomeEvents">
-                     <form method ="Post" action="SavedPostsServlet">
-                     <input type=hidden name="userid" value ="${user.id}">
-                    	<button type="submit">Saved Posts</button> 
-                     </form>
-                    	
-                    	
-                     </div>
+                     <div class="upcomeEvents"><span>Saved Posts</span></div>
                   </div>
                </div>
             </div>
