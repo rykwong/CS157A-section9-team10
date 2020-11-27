@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*" %>
+
 <html>
    <head>
       <title>Danger Alert</title>
       <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
       <link rel="stylesheet" type="text/css" href="css/style.css" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <script>
          window.onload = function () { 
          var today = new Date();
@@ -160,38 +162,49 @@
                      </div>
                   </div>
 				  <br>
-					<table border="1">
-					<tr>
-					<td>Title</td>
-					<td>Description</td>
-					<td>Location</td>
-					<td>Date/Time</td>
-					<td>Type</td>
-					</tr>
+					<table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">Id</th>
+					      <th scope="col">Title</th>
+					      <th scope="col">Description</th>
+					       <th scope="col">Location</th>
+					      <th scope="col">Type</th>
+					       <th scope="col">Date&Time</th>
+					    </tr>
+					  </thead>
 					<%
 					try{
 				        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
 				        String dbUser = "root";
 				        String dbPassword = "31464573";
+				        
 				 
 				        Class.forName("com.mysql.jdbc.Driver");
 				        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
 				        
-				        String sql = "SELECT * FROM Report ORDER BY datetime DESC";
+				        String sql = "SELECT * FROM Report ORDER BY datetime DESC LIMIT 10";
 				        Statement statement = connection.createStatement();
 				        ResultSet result = statement.executeQuery(sql);
+				        
+				        
 				        
 						while(result.next()){
 						%>
 						<tr>
+						<th scope="row"><%=result.getString("reportid")%></th>
 						<td><%=result.getString("title") %></td>
 						<td><%=result.getString("description") %></td>
 						<td><%=result.getString("location") %></td>
 						<td><%=result.getTimestamp("datetime") %></td>
 						<td><%=result.getString("type") %></td>
+						<td><button type="button" class="btn btn-secondary" onclick="alert('Post has saved.')">Save</button></td>
+						<td><button type="button" class="btn btn-danger" onclick="alert('Post has deleted.')" >Delete</button> </td>
+						
+		
 						</tr>
 						<%
-						}
+						}			
 						connection.close();
 						} catch (Exception e) {
 						e.printStackTrace();
@@ -200,6 +213,8 @@
 					</table>
 				 
                </div>
+               
+            
                <div class="columnEvents" id="floatRht">
                   <div>
                      <p id="dateDisplay">&nbsp;</p>
@@ -212,11 +227,9 @@
                   <div class="card">
                      <div class="upcomeEvents">
                      <form method ="Post" action="SavedPostsServlet">
-                     <input type=hidden name="userid" value ="${user.id}">
                     	<button type="submit">Saved Posts</button> 
                      </form>
-                    	
-                    	
+
                      </div>
                   </div>
                </div>

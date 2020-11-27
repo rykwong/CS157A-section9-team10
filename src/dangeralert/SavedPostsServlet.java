@@ -70,6 +70,7 @@ public class SavedPostsServlet extends HttpServlet {
 	        String sql = "SELECT * FROM Report, Save WHERE Report.reportid = Save.reportid && Save.userid =?";
 	        PreparedStatement statement = connection.prepareStatement(sql);
 	        statement.setString(1, Integer.toString(user.getId()));
+	        statement.setString(1, "1");
 	        
 	 
 	        ResultSet result = statement.executeQuery();
