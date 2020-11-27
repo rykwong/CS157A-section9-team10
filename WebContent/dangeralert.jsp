@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*" %>
+<%@ page import ="java.util.*" %>
 
 <html>
    <head>
@@ -178,7 +179,8 @@
 				        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
 				        String dbUser = "root";
 				        String dbPassword = "31464573";
-				        
+				        ArrayList<Integer> reportsId = (ArrayList<Integer>)session.getAttribute("reportsId");
+				        ArrayList<Integer> myOwnReportsId = (ArrayList<Integer>)session.getAttribute("myOwnReportsId");
 				 
 				        Class.forName("com.mysql.jdbc.Driver");
 				        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
@@ -186,22 +188,40 @@
 				        String sql = "SELECT * FROM Report ORDER BY datetime DESC LIMIT 10";
 				        Statement statement = connection.createStatement();
 				        ResultSet result = statement.executeQuery(sql);
-				        
-				        
+				       
+				 
 				        
 						while(result.next()){
+							int reportId = result.getInt("reportid");
 						%>
 						<tr>
-						<th scope="row"><%=result.getString("reportid")%></th>
+						
+						<th scope="row"><%=reportId %></th>
 						<td><%=result.getString("title") %></td>
 						<td><%=result.getString("description") %></td>
 						<td><%=result.getString("location") %></td>
 						<td><%=result.getTimestamp("datetime") %></td>
 						<td><%=result.getString("type") %></td>
-						<td><button type="button" class="btn btn-secondary" onclick="alert('Post has saved.')">Save</button></td>
-						<td><button type="button" class="btn btn-danger" onclick="alert('Post has deleted.')" >Delete</button> </td>
+						<% if(!reportsId.contains(reportId)){ %>
+						<form method ="Post" action="SavePostButtonServlet"> 
+						<input type="hidden" id="reportId" name="reportId" value="<%=reportId %>">
+						<td>
+						<button type="submit" class="btn btn-secondary" onclick="alert('Post has saved.')">Save</button>
+						</td>
+						<%} %>
+						</form>
 						
-		
+						<% if(myOwnReportsId.contains(reportId)){ %>
+						<form method ="Post" action="DeleteButtonServlet"> 
+						<input type="hidden" id="reportId" name="reportId" value="<%=reportId %>">
+						<td>
+						<button type="button" class="btn btn-danger" onclick="alert('Post has deleted.')" >Delete</button> 
+						</td>
+						
+						<%} %>
+						</form>
+						
+						
 						</tr>
 						<%
 						}			

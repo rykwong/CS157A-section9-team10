@@ -1,6 +1,7 @@
 package dangeralert;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,9 +31,10 @@ public class DisplayServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int status = Integer.parseInt(request.getParameter("s"));
-		
+		PrintWriter out = response.getWriter();
 		
 		if(status == 1) {
+			out.println("In displayserlet");
 	        String message = "Successfully Reported";
 			request.setAttribute("message",message);
 		}
