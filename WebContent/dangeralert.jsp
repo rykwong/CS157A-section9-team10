@@ -211,18 +211,18 @@
 						String[] city = request.getParameterValues("filter");
 				        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
 				        String dbUser = "root";
-				        String dbPassword = "9Cn99N54!";
+				        String dbPassword = "31464573";
 				 
 				        Class.forName("com.mysql.jdbc.Driver");
 				        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-				        String sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users ORDER BY datetime DESC LIMIT 20";
+				        String sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users ORDER BY datetime DESC LIMIT 10";
 				        if(city != null){
 					        String filters = "";
 					        for(int i = 0; i < city.length-1;i++){
 					        	filters += "location='"+ city[i] + "' OR ";
 					        }
 					        filters += "location='" + city[city.length-1] + "'";
-					        sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users WHERE " + filters + " ORDER BY datetime DESC LIMIT 20";
+					        sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users WHERE " + filters + " ORDER BY datetime DESC LIMIT 10";
 				        }
 				        ArrayList<Integer> reportsId = (ArrayList<Integer>)session.getAttribute("reportsId");
 				        ArrayList<Integer> myOwnReportsId = (ArrayList<Integer>)session.getAttribute("myOwnReportsId");
@@ -253,10 +253,14 @@
 						</form>
 						
 						<% if(myOwnReportsId.contains(reportId)){ %>
-						<form method ="Post" action="DeleteButtonServlet"> 
-						<input type="hidden" id="reportId" name="reportId" value="<%=reportId %>">
+						<form method ="Post" action="delete"> 
+						<input type="hidden" id="id" name="id" value="<%=reportId %>">
+						<input type="hidden" id="action" name="action" value="removed">
+						<input type="hidden" id="reason" name="reason" value="backToHome">
+						
+						
 						<td>
-						<button type="button" class="btn btn-danger" onclick="alert('Post has deleted.')" >Delete</button> 
+						<button type="submit" class="btn btn-danger" onclick="alert('Post has deleted.')" >Delete</button> 
 						</td>
 						
 						<%} %>

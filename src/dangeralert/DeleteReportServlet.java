@@ -1,6 +1,7 @@
 package dangeralert;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.*;
 
 import javax.servlet.RequestDispatcher;
@@ -41,6 +42,11 @@ public class DeleteReportServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String action = request.getParameter("action");
 		String reason = request.getParameter("reason");
+		PrintWriter out = response.getWriter();
+		out.print("In Delete");
+		
+		
+		
 		try {
 	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
 	        String dbUser = "root";
@@ -58,7 +64,13 @@ public class DeleteReportServlet extends HttpServlet {
 	        else {
 	    		
 	        }
-	        response.sendRedirect("DeleteDisplayServlet?s=" + status);
+	        
+	        if(reason.equals("backToHome")) {
+	        	response.sendRedirect("dangerAlert.jsp");
+	        }else {
+	        	 response.sendRedirect("DeleteDisplayServlet?s=" + status);
+	        }
+	       
 	        
 		}
 		catch(Exception e) {

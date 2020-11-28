@@ -1,6 +1,10 @@
 package dangeralert;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +39,26 @@ public class DeleteButtonServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String reportId = request.getParameter("reportId");
+		try {
+	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
+	        String dbUser = "root";
+	        String dbPassword = "31464573";
+	 
+	        Class.forName("com.mysql.jdbc.Driver");
+	        int status = 0;
+	        
+	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+	       
+        	String sql = "DELETE FROM Report WHERE reportid=" + reportId;
+        	Statement statement = connection.createStatement();
+	        status = statement.executeUpdate(sql);
+       
+	     
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

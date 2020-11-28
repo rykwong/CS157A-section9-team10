@@ -37,7 +37,7 @@ public class UserRegisterServlet extends HttpServlet {
 		try {
 	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
 	        String dbUser = "root";
-	        String dbPassword = "9Cn99N54!";
+	        String dbPassword = "31464573";
 	 
 	        Class.forName("com.mysql.jdbc.Driver");
 	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
