@@ -3,6 +3,7 @@ package dangeralert;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class DeleteReportServlet
@@ -42,8 +44,10 @@ public class DeleteReportServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String action = request.getParameter("action");
 		String reason = request.getParameter("reason");
-		PrintWriter out = response.getWriter();
-		out.print("In Delete");
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		String userId = Integer.toString(user.getId());
+		String sql="";
 		
 		
 		
@@ -56,8 +60,8 @@ public class DeleteReportServlet extends HttpServlet {
 	        int status = 0;
 	        
 	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-	        if(action.equals("removed")){
-	        	String sql = "DELETE FROM Report WHERE reportid=" + id;
+	        if(action.equals("removed")){	
+	        	sql = "DELETE FROM Report WHERE reportid=" + id;
 	        	Statement statement = connection.createStatement();
 		        status = statement.executeUpdate(sql);
 	        }
@@ -66,7 +70,7 @@ public class DeleteReportServlet extends HttpServlet {
 	        }
 	        
 	        if(reason.equals("backToHome")) {
-	        	response.sendRedirect("dangerAlert.jsp");
+	        	response.sendRedirect("dangeralert.jsp");
 	        }else {
 	        	 response.sendRedirect("DeleteDisplayServlet?s=" + status);
 	        }

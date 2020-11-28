@@ -3,6 +3,7 @@
 <%@ page import= "dangeralert.Report" %>
 <%@ page import= "java.util.ArrayList" %>
 <%@ page import = "java.sql.*" %>
+<%@ page import = "java.lang.*" %>
 
 <% ArrayList reports = (ArrayList)request.getAttribute("reports"); %>
 <!DOCTYPE html>
@@ -39,7 +40,15 @@
 			<td><%=report.getType()%></td>
 			<% Timestamp ts = report.getDatetime(); %>
 			<td><%=ts.toString() %></td>
+			
+			<form method ="Post" action="RemoveSavedPostButton"> 
+			<input type="hidden"  name="reportId" value="<%=report.getId()%>">
+			<td> <label> <%=report.getId()%></label> </td>
+			<td>
+			<button type="submit" class="btn btn-danger" onclick="alert('Post has been removed.')">Remove</button>
+			</td>
 		</tr>
+		
 	<% }%>
 	<%}else{ %>
 	<div class="jumbotron">
@@ -49,9 +58,7 @@
 	<%} %>
     
   </tbody>
-</table>
-<p class="lead">
-	    <a class="btn btn-primary btn-lg" href="dangeralert.jsp" role="button">Home Page</a>
-	  </p>
+</table><a class="btn btn-primary btn-lg" href="dangeralert.jsp" role="button">Home Page</a>
+	  
 </body>
 </html>

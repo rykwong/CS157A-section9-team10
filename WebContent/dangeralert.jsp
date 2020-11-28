@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*" %>
 <%@ page import ="java.util.*" %>
+<%@ page import = "dangeralert.User" %>
 
 <html>
    <head>
@@ -80,6 +81,7 @@
                                     <a href="#">Link 3</a>
                                  </div>
                               </div>
+                           
                            </div>
                         </div>
                      </div>
@@ -208,14 +210,33 @@
 
 					<%
 					try{
+						User user = (User)request.getSession().getAttribute("user");
 						String[] city = request.getParameterValues("filter");
 				        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
 				        String dbUser = "root";
 				        String dbPassword = "31464573";
-				 
+				 		
 				        Class.forName("com.mysql.jdbc.Driver");
 				        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-				        String sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users ORDER BY datetime DESC LIMIT 10";
+				        
+				        String sql = "SELECT * FROM Report, Save WHERE Report.reportid = Save.reportid && Save.userid =?";
+				        PreparedStatement statement1 = connection.prepareStatement(sql);
+				        statement1.setString(1, Integer.toString(user.getId()));
+				        ArrayList<Integer> savedReportsId = new ArrayList<>();
+				        //statement.setString(1, "1");
+				        
+				 
+				        ResultSet result = statement1.executeQuery();
+				       
+				        while(result.next())
+				        {
+				        	savedReportsId.add(result.getInt("reportid"));
+				     
+				        }
+				        
+				        
+				        
+				        sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users ORDER BY datetime DESC LIMIT 10";
 				        if(city != null){
 					        String filters = "";
 					        for(int i = 0; i < city.length-1;i++){
@@ -224,11 +245,11 @@
 					        filters += "location='" + city[city.length-1] + "'";
 					        sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users WHERE " + filters + " ORDER BY datetime DESC LIMIT 10";
 				        }
-				        ArrayList<Integer> reportsId = (ArrayList<Integer>)session.getAttribute("reportsId");
+				        //ArrayList<Integer> savedReportsId = (ArrayList<Integer>)session.getAttribute("savedReportsId");
 				        ArrayList<Integer> myOwnReportsId = (ArrayList<Integer>)session.getAttribute("myOwnReportsId");
 
 				        Statement statement = connection.createStatement();
-				        ResultSet result = statement.executeQuery(sql);
+				        result = statement.executeQuery(sql);
 				       
 				 
 				        
@@ -243,7 +264,7 @@
 						<td><%=result.getString("location") %></td>
 						<td><%=result.getTimestamp("datetime") %></td>
 						<td><%=result.getString("type") %></td>
-						<% if(!reportsId.contains(reportId)){ %>
+						<% if(!savedReportsId.contains(reportId)){ %>
 						<form method ="Post" action="SavePostButtonServlet"> 
 						<input type="hidden" id="reportId" name="reportId" value="<%=reportId %>">
 						<td>

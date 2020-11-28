@@ -42,7 +42,7 @@ public class UserLoginServlet extends HttpServlet {
 			ArrayList<Integer> myOwnReportsId = getOwnerReportsId(user);
 			HttpSession session = request.getSession();
 			session.setAttribute("user",user);
-			session.setAttribute("reportsId", reports);
+			session.setAttribute("savedReportsId", reports);
 			session.setAttribute("myOwnReportsId",myOwnReportsId );
 			page = "dangeralert.jsp";
 			response.sendRedirect(page);
