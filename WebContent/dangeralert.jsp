@@ -133,10 +133,6 @@
                               <option value="Health Hazard">Health Hazard</option>
                            </select>
                            <br>
-                           <label for="date">Date:</label><br>
-                           <input type="date" id="date" name="date" value=""><br>
-                           <label for="time">Time:</label><br>
-                           <input type="time" id="time" name="time" value=""><br>
                            <label for="location">Location:</label><br>
                            <select id="location" name="location">
                               <option value=""></option>
@@ -156,8 +152,6 @@
                            <br>
                            <label for="description">Description:</label><br>
                            <input type="text" id="description" name="description" value=""><br>
-                           <label for="AI">Authorities Involved:</label><br>
-                           <input type="text" id="AI" name="ai" AI=""><br><br>
                            <input type="submit" value="Submit">
                         </form>
                      </div>
