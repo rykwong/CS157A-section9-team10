@@ -135,10 +135,7 @@
                               <option value="Health Hazard">Health Hazard</option>
                            </select>
                            <br>
-                           <label for="date">Date:</label><br>
-                           <input type="date" id="date" name="date" value=""><br>
-                           <label for="time">Time:</label><br>
-                           <input type="time" id="time" name="time" value=""><br>
+                        
                            <label for="location">Location:</label><br>
                            <select id="location" name="location">
                               <option value=""></option>
@@ -158,8 +155,7 @@
                            <br>
                            <label for="description">Description:</label><br>
                            <input type="text" id="description" name="description" value=""><br>
-                           <label for="AI">Authorities Involved:</label><br>
-                           <input type="text" id="AI" name="ai" AI=""><br><br>
+                          
                            <input type="submit" value="Submit">
                         </form>
                      </div>
@@ -235,6 +231,21 @@
 				        }
 				        
 				        
+				        sql = "SELECT reportid FROM Reports WHERE userid =?;";
+				        PreparedStatement statement2 = connection.prepareStatement(sql);
+				        statement2.setString(1, Integer.toString(user.getId()));
+				        //statement.setString(1, "1");
+				        ArrayList<Integer> myOwnReportsId = new ArrayList<>();
+				 
+				        result = statement2.executeQuery();
+				       
+				        while(result.next())
+				        {
+				        	myOwnReportsId.add(result.getInt("reportid"));
+				     
+				        }
+				        
+				        
 				        
 				        sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users ORDER BY datetime DESC LIMIT 10";
 				        if(city != null){
@@ -246,7 +257,7 @@
 					        sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users WHERE " + filters + " ORDER BY datetime DESC LIMIT 10";
 				        }
 				        //ArrayList<Integer> savedReportsId = (ArrayList<Integer>)session.getAttribute("savedReportsId");
-				        ArrayList<Integer> myOwnReportsId = (ArrayList<Integer>)session.getAttribute("myOwnReportsId");
+				        //ArrayList<Integer> myOwnReportsId = (ArrayList<Integer>)session.getAttribute("myOwnReportsId");
 
 				        Statement statement = connection.createStatement();
 				        result = statement.executeQuery(sql);
@@ -311,7 +322,7 @@
                   </div>
                   <div class="EmptyHeight"></div>
                   <div class="card">
-                     <div class="upcomeEvents"><span>Saved Posts</span></div>
+                    
                      <div class="upcomeEvents">
                      <form method ="Post" action="SavedPostsServlet">
                     	<button type="submit">Saved Posts</button> 

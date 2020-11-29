@@ -38,12 +38,12 @@ public class UserLoginServlet extends HttpServlet {
 		User user = authenticate(username,password);
 		if(user != null)
 		{
-			ArrayList<Integer> reports = getSavedReports(user);
-			ArrayList<Integer> myOwnReportsId = getOwnerReportsId(user);
+			//ArrayList<Integer> reports = getSavedReports(user);
+			//ArrayList<Integer> myOwnReportsId = getOwnerReportsId(user);
 			HttpSession session = request.getSession();
 			session.setAttribute("user",user);
-			session.setAttribute("savedReportsId", reports);
-			session.setAttribute("myOwnReportsId",myOwnReportsId );
+			//session.setAttribute("savedReportsId", reports);
+			//session.setAttribute("myOwnReportsId",myOwnReportsId );
 			page = "dangeralert.jsp";
 			response.sendRedirect(page);
 		}
