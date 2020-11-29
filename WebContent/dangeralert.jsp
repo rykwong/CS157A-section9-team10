@@ -135,7 +135,10 @@
                               <option value="Health Hazard">Health Hazard</option>
                            </select>
                            <br>
+<<<<<<< HEAD
                         
+=======
+>>>>>>> dc597eda3a7c13b1a77639b64faede5af72dc10f
                            <label for="location">Location:</label><br>
                            <select id="location" name="location">
                               <option value=""></option>
@@ -155,7 +158,10 @@
                            <br>
                            <label for="description">Description:</label><br>
                            <input type="text" id="description" name="description" value=""><br>
+<<<<<<< HEAD
                           
+=======
+>>>>>>> dc597eda3a7c13b1a77639b64faede5af72dc10f
                            <input type="submit" value="Submit">
                         </form>
                      </div>
