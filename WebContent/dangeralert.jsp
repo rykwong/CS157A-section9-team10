@@ -27,88 +27,46 @@
          }
       </script>
    </head>
-<body>
-      <div id="wh_bg">
-         <div id="bg_bg">
-            <div id="top" style="display:none">
-               <div class="top1"></div>
-               <div class="top2" style="background-color:red;">  </div>
-            </div>
-            <div id="topMenu" >
-               <div class="header">
-                  <div class="search displayInline" style="width:100%; margin-top: 1%;">
-                     <div class="displayInline paddingLft30px" style="width:25%;height:30px;">
-                        <span id="menuTextForLogo"><img src="images/logo.png" width="300" height="100" class="flt" /></span>
-                     </div>
-                     <div class="displayInline" style="width:70%">
-                        <div class="displayInline" style="width:25%">
-                           <form method="get" id="search" action="#">
-                              <span>
-                              <input type="text" value="Search..." name="s" id="s" /> 
-                              <input name="searchsubmit" type="image" src="images/search.png" value="Go" id="searchsubmit" class="btn btnSearch"  />
-                              </span>
-                           </form>
-                        </div>
-                        <!--/searchform -->
-                        <div class="displayInline" style="width:15%">
-                           <span>
-                           <input name="searchsubmit" type="image" src="images/frnd.png" class="btn btnFrnd paddingLft10px"  />
-                           <input name="searchsubmit" type="image" src="images/msg.png" class="btn btnMsg paddingLft10px"  />
-                           <input name="searchsubmit" type="image" src="images/bell.png" class="btn btnBell paddingLft10px"  />
-                           </span>
-                        </div>
-                        <div class="displayInline" id ="floatRht" style="width:40%;margin-top: -15px;">
-                           <div class="navbar">
-                              <a href="#AdminCP">AdminCP</a>
-                              <a href="#Authorities">Authorities</a>
-                              <div class="dropdown">
-                                 <button class="dropbtn">Profile 
-                                 <i class="fa fa-caret-down"></i>
-                                 </button>
-                                 <div class="dropdown-content">
-                                    <a href="#">Link 1</a>
-                                    <a href="#">Link 2</a>
-                                    <a href="#">Link 3</a>
-                                 </div>
-                              </div>
-                              <div class="dropdown">
-                                 <button class="dropbtn">Account 
-                                 <i class="fa fa-caret-down"></i>
-                                 </button>
-                                 <div class="dropdown-content">
-                                    <a href="#">Link 1</a>
-                                    <a href="#">Link 2</a>
-                                    <a href="#">Link 3</a>
-                                 </div>
-                              </div>
-                           
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="clr"></div>
-                  <div id="menu">
-                     <div class="men_tp"> <a href="">HOME</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:20px;" /> <a href="">FRIENDS</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:20px;" /> <a href="">PAGES</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:20px;" /> <a href="">PHOTOS</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:20px;" /> <a href="">FORUM</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:20px;" /> <a href="">POLLS</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:20px;" /> <a href="">VIDEOS</a> </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
+<body>		
+
+			 <style>
+				nav {
+				  position: fixed;
+				  left: 0;
+				  bottom: 0;
+				  width: 100%;
+				  height: 8%;
+				  color: white;
+				  text-align: center;
+				}
+				.nav a{
+					padding: 10px;
+				}
+				</style>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			  <a class="navbar-brand" style="display:block; padding:10px;font-size: 40px " href="#">Danger Alert</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			    <div class="navbar-nav">
+			      <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Home <span class="sr-only">(current)</span></a>
+			      <a class="nav-item nav-link" style="display:block; padding:10px; font-size: 20px" href="#">Announcement </a>
+			      <a class="nav-item nav-link"style="display:block; padding:10px; font-size: 20px"  href="#">Members From Departments</a>
+			     
+			    </div>
+			  </div>
+			  <ul class="nav navbar-nav navbar-right">
+     		 <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Logout <span class="sr-only">(current)</span></a></li>
+   		 </ul>
+			</nav>
+			
             <div class="row">
-               <div class="columnProfile">
+               <div class="columnProfile" style="height:80%">
                   <div class="card">
                      <img src="images/abt_img.jpg" alt="John" style="width:100%">
-                     <h1>${user.username}</h1>
-                     <div class="card">
-                        <div class="upcomeEvents"><span>Authorities Online</span></div>
-                     </div>
-					 <img src="images/fdept.png" alt="John" style="width:50%"class="btn btnFrnd paddingLft10px">
-					 <div class="EmptyHeight"> </div>
-					 <div class="card">
-                        <div class="upcomeEvents"><span>Friends Online</span></div>
-						<br>
-						<br>
-						<br>
-                     </div>
+                     <h1>Hello, ${user.username}</h1>
+                    
                   </div>
                </div>
                <div class="columnFeed marginRgt5 marginLft">
@@ -135,10 +93,7 @@
                               <option value="Health Hazard">Health Hazard</option>
                            </select>
                            <br>
-<<<<<<< HEAD
-                        
-=======
->>>>>>> dc597eda3a7c13b1a77639b64faede5af72dc10f
+
                            <label for="location">Location:</label><br>
                            <select id="location" name="location">
                               <option value=""></option>
@@ -158,10 +113,7 @@
                            <br>
                            <label for="description">Description:</label><br>
                            <input type="text" id="description" name="description" value=""><br>
-<<<<<<< HEAD
-                          
-=======
->>>>>>> dc597eda3a7c13b1a77639b64faede5af72dc10f
+
                            <input type="submit" value="Submit">
                         </form>
                      </div>
@@ -196,7 +148,7 @@
 				  		<input type="submit" value="Filter">
 				  		</form>
 				  	</div>
-					<table class="table">
+					<table class="table"">
 					  <thead class="thead-dark">
 					    <tr>
 					   		<th scope="col">User</th>
@@ -321,15 +273,8 @@
                <div class="columnEvents" id="floatRht">
                   <div>
                      <p id="dateDisplay">&nbsp;</p>
-                  </div>
-                  <div class="card">
-                     <div class="upcomeEvents"><span>Upcoming Events</span></div>
-                     <div class="todayEvents"><span>Today's Events</span></div>
-                  </div>
-                  <div class="EmptyHeight"></div>
-                  <div class="card">
-                    
-                     <div class="upcomeEvents">
+                  </div>    
+                     <div class="upcomeEvents" style="width:50%">
                      <form method ="Post" action="SavedPostsServlet">
                     	<button type="submit">Saved Posts</button> 
                      </form>
@@ -338,10 +283,25 @@
                   </div>
                </div>
             </div>
-            <div class="footer">
-               <div id="foot"></div>
-               <span class="copy"><a href=""></a></span>
-            </div>
+            <style>
+			.footer {
+			  position: fixed;
+			  left: 0;
+			  bottom: 0;
+			  width: 100%;
+			  height: 5%;
+			  background-color: black;
+			  color: white;
+			  text-align: center;
+			}
+			.footer p{
+				font-size: 25px;
+			}
+			</style>
+			
+			<div class="footer">
+			  <p >Footer</p>
+			</div>
          </div>
       </div>
       <div align=center><a href=''></a></div>
