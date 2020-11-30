@@ -51,13 +51,15 @@
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			    <div class="navbar-nav">
 			      <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Home <span class="sr-only">(current)</span></a>
-			      <a class="nav-item nav-link" style="display:block; padding:10px; font-size: 20px" href="#">Announcement </a>
-			      <a class="nav-item nav-link"style="display:block; padding:10px; font-size: 20px"  href="#">Members From Departments</a>
+			      <a class="nav-item nav-link" style="display:block; padding:10px; font-size: 20px" href="MemberOfDepartments.jsp">Announcement </a>
+			      <a class="nav-item nav-link"style="display:block; padding:10px; font-size: 20px"  href="MemberOfDepartments.jsp">Members From Departments</a>
 			     
 			    </div>
 			  </div>
 			  <ul class="nav navbar-nav navbar-right">
-     		 <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Logout <span class="sr-only">(current)</span></a></li>
+     		
+     		  <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Authority <span class="sr-only">(current)</span></a></li>
+     		   <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Logout <span class="sr-only">(current)</span></a></li>
    		 </ul>
 			</nav>
 			
