@@ -51,7 +51,7 @@
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			    <div class="navbar-nav">
 			      <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Home <span class="sr-only">(current)</span></a>
-			      <a class="nav-item nav-link" style="display:block; padding:10px; font-size: 20px" href="MemberOfDepartments.jsp">Announcement </a>
+			      <a class="nav-item nav-link" style="display:block; padding:10px; font-size: 20px" href="Announcements.jsp">Announcement </a>
 			      <a class="nav-item nav-link"style="display:block; padding:10px; font-size: 20px"  href="MemberOfDepartments.jsp">Members From Departments</a>
 			     
 			    </div>
@@ -59,10 +59,13 @@
 			  <ul class="nav navbar-nav navbar-right">
      		<% boolean isAuth = (Boolean)session.getAttribute("isAuth");
      		if(isAuth){ %>
-     			 <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Authority <span class="sr-only">(current)</span></a></li>
+     			 <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="admintest.jsp">Admin <span class="sr-only">(current)</span></a></li>
      		<%} %>
-     	
-     
+     		<% boolean isAdmin = (Boolean)session.getAttribute("isAdmin");
+     		if(isAdmin){ %>
+
+     			 <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="authoritiestest.jsp">Authority <span class="sr-only">(current)</span></a></li>
+     			 <%} %>
      		   <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="index_form.jsp">Logout <span class="sr-only">(current)</span></a></li>
    		 </ul>
 			</nav>
@@ -154,7 +157,8 @@
 				  		<input type="submit" value="Filter">
 				  		</form>
 				  	</div>
-					<table class="table"">
+				  	<div class="d-flex justify-content-center" style="margin-bottom:5%; width:100%">
+					<table class="table" >
 					  <thead class="thead-dark">
 					    <tr>
 					   		<th scope="col">User</th>
@@ -167,10 +171,12 @@
 					    </tr>
 					  </thead>
 
-
 					<%
 					try{
 						User user = (User)request.getSession().getAttribute("user");
+						
+	                     
+	                     
 						String[] city = request.getParameterValues("filter");
 				        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
 				        String dbUser = "root";
@@ -211,14 +217,14 @@
 				        
 				        
 				        
-				        sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users ORDER BY datetime DESC LIMIT 10";
+				        sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users ORDER BY datetime DESC LIMIT 15";
 				        if(city != null){
 					        String filters = "";
 					        for(int i = 0; i < city.length-1;i++){
 					        	filters += "location='"+ city[i] + "' OR ";
 					        }
 					        filters += "location='" + city[city.length-1] + "'";
-					        sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users WHERE " + filters + " ORDER BY datetime DESC LIMIT 10";
+					        sql = "SELECT * FROM Report NATURAL JOIN Reports NATURAL JOIN Users WHERE " + filters + " ORDER BY datetime DESC LIMIT 15";
 				        }
 				        //ArrayList<Integer> savedReportsId = (ArrayList<Integer>)session.getAttribute("savedReportsId");
 				        //ArrayList<Integer> myOwnReportsId = (ArrayList<Integer>)session.getAttribute("myOwnReportsId");
@@ -232,6 +238,7 @@
 							int reportId = result.getInt("reportid");
 						%>
 						<tr>
+						
 						<td><%=result.getString("username")%></td>
 						<th scope="row"><%=reportId %></th>
 						<td><%=result.getString("title") %></td>
@@ -272,6 +279,7 @@
 						}
 					%>
 					</table>
+					</div>
 				 
                </div>
                
@@ -290,24 +298,7 @@
                </div>
             </div>
             <style>
-			.footer {
-			  position: fixed;
-			  left: 0;
-			  bottom: 0;
-			  width: 100%;
-			  height: 5%;
-			  background-color: black;
-			  color: white;
-			  text-align: center;
-			}
-			.footer p{
-				font-size: 25px;
-			}
-			</style>
 			
-			<div class="footer">
-			  <p >Footer</p>
-			</div>
          </div>
       </div>
       <div align=center><a href=''></a></div>

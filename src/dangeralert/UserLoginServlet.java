@@ -39,9 +39,11 @@ public class UserLoginServlet extends HttpServlet {
 		if(user != null)
 		{
 			boolean isAuth = isAuthority(user);
+			boolean isAdmin = isAdmin(user);
 			HttpSession session = request.getSession();
 			session.setAttribute("user",user);
 			session.setAttribute("isAuth", isAuth);
+			session.setAttribute("isAdmin", isAdmin);
 			page = "dangeralert.jsp";
 			response.sendRedirect(page);
 		}
@@ -95,7 +97,49 @@ public class UserLoginServlet extends HttpServlet {
 		}
 	}
 	
+
+	public boolean isAdmin(User user) {
+		 ArrayList<Integer> usersId = new ArrayList<>();
+		 String userId = Integer.toString(user.getId());
+		try {
+			//out.println("in try");
+	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
+	        String dbUser = "root";
+	        String dbPassword = "31464573";
+	 
+	        Class.forName("com.mysql.jdbc.Driver");
+	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+	        String sql = "SELECT userid FROM Admin;";
+	        Statement statement = connection.createStatement();
+	        ResultSet result = statement.executeQuery(sql);
+	        
 	
+	       
+	        while(result.next())
+	        {
+	        	usersId.add(result.getInt("userid"));
+	     
+	        }
+	       
+	        connection.close();
+	        //session.setAttribute("userId", userid);
+	        
+	       
+	      
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+			//out.println("DB EEROR");
+			//return null;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			//out.println("DB EEROR");
+			//return null;
+		}
+		
+		return usersId.contains(user.getId());
+		
+	} 
 	
 	
 	public boolean isAuthority(User user) {
@@ -137,7 +181,7 @@ public class UserLoginServlet extends HttpServlet {
 			//return null;
 		}
 		
-		return usersId.contains(userId);
+		return usersId.contains(user.getId());
 		
 	} 
 	
