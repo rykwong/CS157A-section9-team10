@@ -51,7 +51,7 @@
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			    <div class="navbar-nav">
 			      <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Home <span class="sr-only">(current)</span></a>
-			      <a class="nav-item nav-link" style="display:block; padding:10px; font-size: 20px" href="MemberOfDepartments.jsp">Announcement </a>
+			      <a class="nav-item nav-link" style="display:block; padding:10px; font-size: 20px" href="Announcements.jsp">Announcement </a>
 			      <a class="nav-item nav-link"style="display:block; padding:10px; font-size: 20px"  href="MemberOfDepartments.jsp">Members From Departments</a>
 			     
 			    </div>
