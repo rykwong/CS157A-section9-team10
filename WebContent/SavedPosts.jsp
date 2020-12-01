@@ -4,8 +4,8 @@
 <%@ page import= "java.util.ArrayList" %>
 <%@ page import = "java.sql.*" %>
 <%@ page import = "java.lang.*" %>
+<%@ page import = "dangeralert.*" %>
 
-<% ArrayList reports = (ArrayList)request.getAttribute("reports"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +14,36 @@
 <title>Saved Reports</title>
 </head>
 <body>
+
+<% ArrayList<Report> reports = new ArrayList<>();  
+
+User user = (User)request.getSession().getAttribute("user");
+String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
+String dbUser = "root";
+String dbPassword = "31464573";
+	
+Class.forName("com.mysql.jdbc.Driver");
+Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+
+String sql = "SELECT * FROM Report, Save WHERE Report.reportid = Save.reportid && Save.userid =?";
+PreparedStatement statement1 = connection.prepareStatement(sql);
+statement1.setString(1, Integer.toString(user.getId()));
+ResultSet result = statement1.executeQuery();
+
+while(result.next())
+{
+	Report report = new Report();
+	report.setId( result.getInt("reportid"));
+	report.setTitle(result.getString("title"));
+	report.setDescription(result.getString("description"));
+	report.setLocation(result.getString("location"));
+	report.setType(result.getString("type"));
+	report.setDatetime(result.getTimestamp("datetime"));
+	reports.add(report);
+}
+
+%>
+
 <% if(reports.size()!=0){ %>
 <H1>Saved Reports</H1>
 
@@ -29,6 +59,8 @@
     </tr>
   </thead>
   <tbody>
+  
+  
    
     <%for(int i = 0; i<reports.size();i++){%>
 		<tr>
@@ -43,7 +75,7 @@
 			
 			<form method ="Post" action="RemoveSavedPostButton"> 
 			<input type="hidden"  name="reportId" value="<%=report.getId()%>">
-			<td> <label> <%=report.getId()%></label> </td>
+			
 			<td>
 			<button type="submit" class="btn btn-danger" onclick="alert('Post has been removed.')">Remove</button>
 			</td>

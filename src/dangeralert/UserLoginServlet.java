@@ -38,12 +38,10 @@ public class UserLoginServlet extends HttpServlet {
 		User user = authenticate(username,password);
 		if(user != null)
 		{
-			//ArrayList<Integer> reports = getSavedReports(user);
-			//ArrayList<Integer> myOwnReportsId = getOwnerReportsId(user);
+			boolean isAuth = isAuthority(user);
 			HttpSession session = request.getSession();
 			session.setAttribute("user",user);
-			//session.setAttribute("savedReportsId", reports);
-			//session.setAttribute("myOwnReportsId",myOwnReportsId );
+			session.setAttribute("isAuth", isAuth);
 			page = "dangeralert.jsp";
 			response.sendRedirect(page);
 		}
@@ -98,8 +96,11 @@ public class UserLoginServlet extends HttpServlet {
 	}
 	
 	
-	public ArrayList<Integer> getSavedReports(User user) {
-		 ArrayList<Integer> reports = new ArrayList<>();
+	
+	
+	public boolean isAuthority(User user) {
+		 ArrayList<Integer> usersId = new ArrayList<>();
+		 String userId = Integer.toString(user.getId());
 		try {
 			//out.println("in try");
 	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
@@ -108,61 +109,15 @@ public class UserLoginServlet extends HttpServlet {
 	 
 	        Class.forName("com.mysql.jdbc.Driver");
 	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-	        String sql = "SELECT * FROM Report, Save WHERE Report.reportid = Save.reportid && Save.userid =?";
-	        PreparedStatement statement = connection.prepareStatement(sql);
-	        statement.setString(1, Integer.toString(user.getId()));
-	        //statement.setString(1, "1");
+	        String sql = "SELECT userid FROM LawEnforcement;";
+	        Statement statement = connection.createStatement();
+	        ResultSet result = statement.executeQuery(sql);
 	        
-	 
-	        ResultSet result = statement.executeQuery();
+	
 	       
 	        while(result.next())
 	        {
-	        	reports.add(result.getInt("reportid"));
-	     
-	        }
-	       
-	        connection.close();
-	        //session.setAttribute("userId", userid);
-	       
-	      
-		}catch(SQLException e)
-		{
-			e.printStackTrace();
-			//out.println("DB EEROR");
-			//return null;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			//out.println("DB EEROR");
-			//return null;
-		}
-		
-		return reports;
-		
-	}
-	
-	
-	public ArrayList<Integer> getOwnerReportsId(User user) {
-		 ArrayList<Integer> myOwnReportsId = new ArrayList<>();
-		try {
-			//out.println("in try");
-	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
-	        String dbUser = "root";
-	        String dbPassword = "31464573";
-	 
-	        Class.forName("com.mysql.jdbc.Driver");
-	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-	        String sql = "SELECT reportid FROM Reports WHERE userid =?;";
-	        PreparedStatement statement = connection.prepareStatement(sql);
-	        statement.setString(1, Integer.toString(user.getId()));
-	        //statement.setString(1, "1");
-	        
-	 
-	        ResultSet result = statement.executeQuery();
-	       
-	        while(result.next())
-	        {
-	        	myOwnReportsId.add(result.getInt("reportid"));
+	        	usersId.add(result.getInt("userid"));
 	     
 	        }
 	       
@@ -182,7 +137,7 @@ public class UserLoginServlet extends HttpServlet {
 			//return null;
 		}
 		
-		return myOwnReportsId;
+		return usersId.contains(userId);
 		
 	} 
 	

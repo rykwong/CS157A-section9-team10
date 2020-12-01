@@ -67,42 +67,13 @@ public class RemoveSavedPostButton extends HttpServlet {
 	        sql = "DELETE FROM Save WHERE reportid=" + reportId +"&& userid=" +userId;
         	Statement statement = connection.createStatement();
 	        int status = statement.executeUpdate(sql);
-	        
-	        
-	        ArrayList<Integer> savedReportsId = (ArrayList<Integer>)session.getAttribute("savedReportsId");
-	        savedReportsId.remove(reportId);
-	        session.setAttribute("savedReportsId", savedReportsId);
-	        
-	 
-	      
-	        sql = "SELECT * FROM Report, Save WHERE Report.reportid = Save.reportid && Save.userid =?";
-	        PreparedStatement statement2 = connection.prepareStatement(sql);
-	        statement2.setString(1, Integer.toString(user.getId()));
-	        //statement.setString(1, "");
-	        ResultSet result = statement2.executeQuery();
-	        ArrayList<Report> reports = new ArrayList<>();
-	        while(result.next())
-	        {
-	        	int id = result.getInt("reportid");
-	        	String title = result.getString("title");
-	        	String des = result.getString("description");
-	        	String location = result.getString("location");
-	        	Timestamp datetime = result.getTimestamp("datetime");
-	        	String type = result.getString("type");
-	        	reports.add(new Report(id,title,des,location,datetime,type));
-	     
-	        }
-	       
-	        	
-	        	
-	        	
-	        
+	              
+	 	               	
 	        connection.close();
 	        //session.setAttribute("userId", userid);
 	        
-	        request.setAttribute("reports", reports);
-	        RequestDispatcher view = request.getRequestDispatcher("SavedPosts.jsp");
-			view.forward(request,response);
+	        
+	        response.sendRedirect("SavedPosts.jsp");
 	      
 		}
 		

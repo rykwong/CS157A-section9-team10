@@ -56,7 +56,6 @@ public class SavedPostsServlet extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 		//out.println("userid: "+ user.getId());
 		
-		
 		try {
 			//out.println("in try");
 	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
@@ -69,10 +68,8 @@ public class SavedPostsServlet extends HttpServlet {
 	        PreparedStatement statement = connection.prepareStatement(sql);
 	        statement.setString(1, Integer.toString(user.getId()));
 	        //statement.setString(1, "");
-	        
-	 
 	        ResultSet result = statement.executeQuery();
-	        ArrayList<Report> reports = new ArrayList<>();
+	     
 	        while(result.next())
 	        {
 	        	int id = result.getInt("reportid");
@@ -81,16 +78,15 @@ public class SavedPostsServlet extends HttpServlet {
 	        	String location = result.getString("location");
 	        	Timestamp datetime = result.getTimestamp("datetime");
 	        	String type = result.getString("type");
-	        	reports.add(new Report(id,title,des,location,datetime,type));
-	     
+	        	
 	        }
 	       
 	        connection.close();
 	        //session.setAttribute("userId", userid);
 	        
-	        request.setAttribute("reports", reports);
-	        RequestDispatcher view = request.getRequestDispatcher("SavedPosts.jsp");
-			view.forward(request,response);
+	       
+	        request.getRequestDispatcher("SavedPosts.jsp");
+		
 	      
 		}
 		

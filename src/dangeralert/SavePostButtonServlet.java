@@ -48,7 +48,7 @@ public class SavePostButtonServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
+		
 		
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
@@ -69,9 +69,8 @@ public class SavePostButtonServlet extends HttpServlet {
 	        int status = statement.executeUpdate(sql);
 	              
 	        connection.close();
-	        ArrayList<Integer> savedReportsId = (ArrayList<Integer>)session.getAttribute("savedReportsId");
-	        savedReportsId.add(Integer.parseInt(reportId));
-	        session.setAttribute("savedReportsId", savedReportsId);
+	       
+
 	        
 		}	
 		

@@ -57,9 +57,13 @@
 			    </div>
 			  </div>
 			  <ul class="nav navbar-nav navbar-right">
-     		
-     		  <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Authority <span class="sr-only">(current)</span></a></li>
-     		   <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Logout <span class="sr-only">(current)</span></a></li>
+     		<% boolean isAuth = (Boolean)session.getAttribute("isAuth");
+     		if(isAuth){ %>
+     			 <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Authority <span class="sr-only">(current)</span></a></li>
+     		<%} %>
+     	
+     
+     		   <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="index_form.jsp">Logout <span class="sr-only">(current)</span></a></li>
    		 </ul>
 			</nav>
 			
@@ -276,12 +280,12 @@
                   <div>
                      <p id="dateDisplay">&nbsp;</p>
                   </div>    
-                     <div class="upcomeEvents" style="width:50%">
-                     <form method ="Post" action="SavedPostsServlet">
-                    	<button type="submit">Saved Posts</button> 
-                     </form>
+                   
+                     
+                    	<button class="btn btn-primary btn-lg" ><a style="color:white" href="SavedPosts.jsp">Saved Posts</a></button>
+                    
 
-                     </div>
+                    
                   </div>
                </div>
             </div>
