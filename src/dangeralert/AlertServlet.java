@@ -7,10 +7,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.lang.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,16 +19,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class SavePostButtonServlet
+ * Servlet implementation class AlertServlet
  */
-@WebServlet("/SavePostButtonServlet")
-public class SavePostButtonServlet extends HttpServlet {
+@WebServlet("/alert")
+public class AlertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SavePostButtonServlet() {
+    public AlertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,44 +45,34 @@ public class SavePostButtonServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		
+		String type = request.getParameter("IncidentType");
+		String city = request.getParameter("location");
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
-		String userId = Integer.toString(user.getId());
-		String reportId = request.getParameter("reportId");
-		
-	
-		try {
-	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
-	        String dbUser = "root";
-	        String dbPassword = "9Cn99N54!";
-	 
-	        Class.forName("com.mysql.jdbc.Driver");
+        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
+        String dbUser = "root";
+        String dbPassword = "9Cn99N54!";
+ 
+        int status = 0;
+        try {
+			Class.forName("com.mysql.jdbc.Driver");
 	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
-	        String sql = "INSERT INTO Save (userid,reportid) VALUES ("+userId+","+reportId+");";
-	        Statement statement = connection.createStatement();
-	      
-	        int status = statement.executeUpdate(sql);
-	              
-	        connection.close();
-	        ArrayList<Integer> savedReportsId = (ArrayList<Integer>)session.getAttribute("savedReportsId");
-	        savedReportsId.add(Integer.parseInt(reportId));
-	        session.setAttribute("savedReportsId", savedReportsId);
 	        
-		}	
-		
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-			//return null;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			//return null;
+	        String sql = "INSERT INTO Alert(userid,type,city) VALUES(?,?,?)";
+	        PreparedStatement statement = connection.prepareStatement(sql); 
+	        statement.setInt(1,user.getId());
+	        statement.setString(2, type);
+	        statement.setString(3, city);
+	        status = statement.executeUpdate();
+	        
+	        
+		}catch(Exception e){
+	        String message = "Setting alert failed";
+			request.setAttribute("message",message);
 		}
-		
-		response.sendRedirect("dangeralert.jsp");
+		response.sendRedirect("alertset?s=" + status);
+
+	
 	}
 
 }
