@@ -51,7 +51,7 @@ public class AlertServlet extends HttpServlet {
 		User user = (User)session.getAttribute("user");
         String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
         String dbUser = "root";
-        String dbPassword = "31464573";
+        String dbPassword = "9Cn99N54!";
  
         int status = 0;
         try {

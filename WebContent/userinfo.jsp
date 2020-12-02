@@ -62,6 +62,9 @@
 			<th>Location</th>
 			<th>Date/Time</th>
 			<th>Type</th>
+			<th>Username</th>
+			<th>Phone Number</th>
+			<th>City</th>
 		</tr>
 		</thead>
 		<tr>
@@ -70,18 +73,6 @@
 			<td>${actionreport.location}</td>
 			<td>${actionreport.datetime}</td>
 			<td>${actionreport.type}</td>
-		</tr>
-	</table>
-		
-	<table class="table">
-	 <thead class="thead-dark">
-		<tr>
-			<th>Username</th>
-			<th>Phone Number</th>
-			<th>City</th>
-		</tr>
-		</thead>
-		<tr>
 			<td>${userinfo.username}</td>
 			<td>${userinfo.phonenumber}</td>
 			<td>${userinfo.city}</td>
