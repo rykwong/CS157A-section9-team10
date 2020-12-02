@@ -52,13 +52,15 @@
      		   <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="index_form.jsp">Logout <span class="sr-only">(current)</span></a></li>
    		 </ul>
 			</nav>
-<div>
-<table class="table" style= "width: 90%; margin-left:auto; margin-right:auto ">
+			<h1 style="margin-top:1%;margin-left:30%;margin-bottom:1%; width:80%">Members From Departments</h1>
+<div class="d-flex justify-content-center" style="margin-top:1%;margin-left:30%;margin-bottom:1%; width:80%">
+
+<table class="table" >
 
   <thead class="thead-dark">
     <tr>
+      <th scope="col">Authority Name</th>
       <th scope="col">Department</th>
-      <th scope="col">User Name</th>
       <th scope="col">Jurisdiction</th>
     </tr>
   </thead>
@@ -88,9 +90,9 @@
 </table>
 <div class="container">
   <div class="row">
-    <div class="col text-center">
-      <button class="btn btn-primary btn-lg" ><a style="color:white" href="dangeralert.jsp">Home Page</a></button>
-    </div>
+      <div id="Second" class="row" style="margin-left:25%; margin-bottom:2%;width:50%;" >
+	<a class="btn btn-primary btn-lg" href="dangeralert.jsp" role="button">Home Page</a>
+	</div>
   </div>
 </div>
 </div>

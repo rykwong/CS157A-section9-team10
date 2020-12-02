@@ -44,13 +44,13 @@
 				}
 				</style>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			  <a class="navbar-brand" style="display:block; padding:10px;font-size: 40px " href="#">Danger Alert</a>
+			  <a class="navbar-brand" style="display:block; padding:10px;font-size: 40px " href="dangeralert.jsp">Danger Alert</a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
 			  </button>
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			    <div class="navbar-nav">
-			      <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Home <span class="sr-only">(current)</span></a>
+			      <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="dangeralert.jsp">Home <span class="sr-only">(current)</span></a>
 			      <a class="nav-item nav-link" style="display:block; padding:10px; font-size: 20px" href="Announcements.jsp">Announcement </a>
 			      <a class="nav-item nav-link"style="display:block; padding:10px; font-size: 20px"  href="MemberOfDepartments.jsp">Members From Departments</a>
 			     
@@ -66,31 +66,33 @@
 
      			 <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="authoritiestest.jsp">Authority <span class="sr-only">(current)</span></a></li>
      			 <%} %>
-     		   <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="index_form.jsp">Logout <span class="sr-only">(current)</span></a></li>
+     			 <form method="Post" action="LogoutServlet">
+     			 <button class="btn btn-link" style="font-size:30px; color:white " type="submit">Logout </button>
+     			 </form>
+     		  
    		 </ul>
 			</nav>
 			
             <div class="row">
                <div class="columnProfile" style="height:80%">
                   <div class="card">
-                     <img src="images/abt_img.jpg" alt="John" style="width:100%">
+                     <img src="images/abt_img2.png" alt="John" style="width:100%">
                      <h1>Hello, ${user.username}</h1>
-                    
+                    <a  class="btn btn-primary btn-lg" style="margin-left:10%; margin-right:10%" href="SavedPosts.jsp">Saved Posts</a>
                   </div>
                </div>
-               <div class="columnFeed marginRgt5 marginLft">
-			   <h1>Crime Feed</h1>
+               <div class="columnFeed marginRgt5 marginLft" style="width:50%">
+			   <h1>Report Feed</h1>
 			   <h2>${message}</h2>
-                  <div class="ReportFeed">
-                     <div id="menu">
-                        <div class="men_tp menuGrid"> <a onclick="myReportFeed()"> <input name="searchsubmit" type="image" src="images/report.png" class="btn btnFrnd paddingLft15px"  />Report</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:20px;" /><a href=""><input name="searchsubmit" type="image" src="images/report.png" class="btn btnFrnd paddingLft15px">Photo</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:10px;" /> <a href=""><input name="searchsubmit" type="image" src="images/link.png" class="btn btnFrnd paddingLft20px">Link</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:10px;" /> <a href=""><input name="searchsubmit" type="image" src="images/poll.png" class="btn btnFrnd paddingLft15px">Poll</a></div>
-                     </div>
+			   
+                  <div class="ReportFeed" style="margin-bottom:1%">
+                     <button class="btn btn-warning btn-lg" onclick=myReportFeed() > Create New Report</button>
                   </div>
-                  <div class="ToogleReportFeed">
-                     <div id="ReportFeed" class="ReportForm">
+                  <div class="ToogleReportFeed" style="margin-top:1%;">
+                     <div id="ReportFeed" class="form-group">
                         <form action="report" method="post">
                            <label for="title">Title:</label><br>
-                           <input type="text" id="title" name="title" value=""><br>
+                            <textarea  style="width:30%; margin-left:35%" class="form-control" id="title" name="title"  rows="1"></textarea>
                            <label for="IncidentType">Type of Incident:</label><br>
                            <select id="IncidentType" name="IncidentType">
                               <option value=""></option>
@@ -121,9 +123,8 @@
                            </select>
                            <br>
                            <label for="description">Description:</label><br>
-                           <input type="text" id="description" name="description" value=""><br>
-
-                           <input type="submit" value="Submit">
+                           <textarea  style="width:50%; margin-left:25%" class="form-control" id="description" name="description"  rows="3"></textarea>
+                           <input style="margin-top:1%; margin-bottom:1%;"class="btn btn-primary btn-lg" type="submit" value="Submit">
                         </form>
                      </div>
                   </div>
@@ -154,7 +155,7 @@
 				  		<label for="Saratoga">Saratoga</label>
 				  		<input type="checkbox" id="Los Gatos" name="filter" value="Los Gatos">
 				  		<label for="Los Gatos">Los Gatos</label>
-				  		<input type="submit" value="Filter">
+				  		<input class="btn btn-info" type="submit" value="Filter">
 				  		</form>
 				  	</div>
 				  	<div class="d-flex justify-content-center" style="margin-bottom:5%; width:100%">
@@ -284,23 +285,11 @@
                </div>
                
             
-               <div class="columnEvents" id="floatRht">
-                  <div>
-                     <p id="dateDisplay">&nbsp;</p>
-                  </div>    
-                   
-                     
-                    	<button class="btn btn-primary btn-lg" ><a style="color:white" href="SavedPosts.jsp">Saved Posts</a></button>
-                    
-
-                    
-                  </div>
+             
                </div>
-            </div>
-            <style>
+           
+         
 			
-         </div>
-      </div>
-      <div align=center><a href=''></a></div>
+     
    </body>
 </html>

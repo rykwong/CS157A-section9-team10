@@ -12,9 +12,9 @@
 <body>
 	
 	
-	<div class="login-page">
+	<div class="login-page" >
 	
-	<div class="form">	
+	<div class="form" style="width: 200%; height:200%;">	
 		
 	  <form class="register-form" action="register" method="post">
 		

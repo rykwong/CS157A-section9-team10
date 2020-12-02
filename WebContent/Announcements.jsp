@@ -44,50 +44,59 @@
 				}
 				</style>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			  <a class="navbar-brand" style="display:block; padding:10px;font-size: 40px " href="#">Danger Alert</a>
+			  <a class="navbar-brand" style="display:block; padding:10px;font-size: 40px " href="dangeralert.jsp">Danger Alert</a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
 			  </button>
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			    <div class="navbar-nav">
 			      <a class="nav-item nav-link" style="display:block; padding:10px;font-size: 20px " href="dangeralert.jsp">Home</a>
-			      <a class="nav-item nav-link active" style="display:block; padding:10px; font-size: 20px" href="#">Announcement <span class="sr-only">(current)</span></a>
+			      <a class="nav-item nav-link active" style="display:block; padding:10px; font-size: 20px" href="Announcements.jsp">Announcement <span class="sr-only">(current)</span></a>
 			      <a class="nav-item nav-link"style="display:block; padding:10px; font-size: 20px"  href="MemberOfDepartments.jsp">Members From Departments</a>
 			     
 			    </div>
 			  </div>
 			  <ul class="nav navbar-nav navbar-right">
      		
-     		  <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Authority <span class="sr-only">(current)</span></a></li>
-     		   <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="#">Logout <span class="sr-only">(current)</span></a></li>
+     		 	<% boolean isAuth = (Boolean)session.getAttribute("isAuth");
+     		if(isAuth){ %>
+     			 <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="admintest.jsp">Admin <span class="sr-only">(current)</span></a></li>
+     		<%} %>
+     		<% boolean isAdmin = (Boolean)session.getAttribute("isAdmin");
+     		if(isAdmin){ %>
+
+     			 <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="authoritiestest.jsp">Authority <span class="sr-only">(current)</span></a></li>
+     			 <%} %>
+     		   <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="index_form.jsp">Logout <span class="sr-only">(current)</span></a></li>
    		 </ul>
 			</nav>
 			
             <div class="row">
                <div class="columnProfile" style="height:80%">
                   <div class="card">
-                     <img src="images/abt_img.jpg" alt="John" style="width:100%">
+                    <img src="images/abt_img2.png" alt="John" style="width:100%">
                      <h1>Hello, ${user.username}</h1>
                     
                   </div>
                </div>
-               <div class="columnFeed marginRgt5 marginLft">
-			   <h1>Announcements</h1>
+                <div class="columnFeed marginRgt5 marginLft">
+			   <h1>Announcement</h1>
 			   <h2>${message}</h2>
-                  <div class="ReportFeed">
-                     <div id="menu">
-                        <div class="men_tp menuGrid"> <a onclick="myReportFeed()"> <input name="searchsubmit" type="image" src="images/report.png" class="btn btnFrnd paddingLft15px"  />Post</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:20px;" /><a href=""><input name="searchsubmit" type="image" src="images/report.png" class="btn btnFrnd paddingLft15px">Photo</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:10px;" /> <a href=""><input name="searchsubmit" type="image" src="images/link.png" class="btn btnFrnd paddingLft20px">Link</a> <img src="images/line.gif" width="2" height="14" alt="" class="flt" style="margin-left:10px;" /> <a href=""><input name="searchsubmit" type="image" src="images/poll.png" class="btn btnFrnd paddingLft15px">Poll</a></div>
-                     </div>
+                  <div class="ReportFeed" style="margin-bottom:1%">
+                     <button class="btn btn-warning btn-lg" onclick=myReportFeed() > Create New Announcement</button>
                   </div>
-                  <div class="ToogleReportFeed">
+                  <div class="ToogleReportFeed " style="margin-top:1%">
                      <div id="ReportFeed" class="ReportForm">
                         <form action="post" method="post">
                            <label for="title">Title:</label><br>
-                           <input type="text" id="title" name="title" value=""><br>
+                   
+                           <textarea  style="width:50%; margin-left:25%" class="form-control" id="title" name="title"  rows="1"></textarea>
                            <br>
                            <label for="description">Description:</label><br>
-                           <input type="text" id="description" name="description" value=""><br>
-                           <input type="submit" value="Submit">
+                          
+                            <textarea  style="width:50%; margin-left:25%" class="form-control" id="description" name="description"  rows="3"></textarea>
+                           <input class="btn btn-primary btn-lg" type="submit" value="Submit">
+                          
                         </form>
                      </div>
                   </div>
@@ -139,11 +148,7 @@
                </div>
                
             
-               <div class="columnEvents" id="floatRht">
-                  <div>
-                     <p id="dateDisplay">&nbsp;</p>
-                  </div>    
-                  </div>
+             
                </div>
             </div>
             <style>
@@ -167,6 +172,8 @@
 			</div>
          </div>
       </div>
-      <div align=center><a href=''></a></div>
+     <div id="Second" class="row" style="margin-left:25%; margin-bottom:2%;width:50%;" >
+	<a class="btn btn-primary btn-lg" href="dangeralert.jsp" role="button">Home Page</a>
+	</div>
    </body>
 </html>

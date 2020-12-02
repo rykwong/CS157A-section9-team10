@@ -83,11 +83,10 @@ while(result.next())
 }
 
 %>
+
+<% if(reports.size()!=0){ %>
 <div class="d-flex justify-content-center" style="margin-top:1%;margin-left:5%;margin-bottom:0; width:80%">
 	<h1>Admin Page</h1>
-<% if(reports.size()!=0){ %>
-
-
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -123,18 +122,25 @@ while(result.next())
 		</tr>
 		
 	<% }%>
+	</tbody>
+	</table>
+	</div>
+	<div id="Second" class="row" style="margin-left:15%; margin-bottom:2%;width:50%;" >
+	<a class="btn btn-primary btn-lg" href="dangeralert.jsp" role="button">Home Page</a>
+	</div>
 	<%}else{ %>
-	<div class="jumbotron">
+	<div class="jumbotron" style="margin-top:1%;margin-left:5%;margin-bottom:0; width:80%">
 	  <h1 class="display-4">Sad,You have not saved any reports</h1>
 	  <p class="lead">Please come back after you saved some reports</p>
 	</div>
-	<%} %>
-    
-  </tbody>
-</table>
-</div>
-<div id="Second" class="row" style="margin-left:13%; margin-bottom:2%;width:50%;" >
+	<div id="Second" class="row" style="margin-left:5%; margin-bottom:2%;width:50%;" >
 	<a class="btn btn-primary btn-lg" href="dangeralert.jsp" role="button">Home Page</a>
 	</div>
+	<%} %>
+    
+  
+
+
+
 </body>
 </html>

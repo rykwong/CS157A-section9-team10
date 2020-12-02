@@ -102,6 +102,7 @@
 	</div>
 	<div id="Second" class="row" style="margin-left:14%; margin-bottom:2%;width:50%;" >
 	<a class="btn btn-primary btn-lg" href="dangeralert.jsp" role="button">Home Page</a>
+	<a  style="margin-left:3%;"class="btn btn-danger btn-lg" href="alert.jsp" role="button">Set Alert</a>
 	</div>
 </body>
 </html>
