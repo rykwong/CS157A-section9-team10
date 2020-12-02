@@ -33,6 +33,7 @@ public class UserRegisterServlet extends HttpServlet {
 		String phoneNumber = request.getParameter("phoneNumber");
 		String city = request.getParameter("city");
 		 
+		phoneNumber = phoneNumber.replaceAll("-","");
 		int status;
 		try {
 	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";

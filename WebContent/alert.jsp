@@ -95,7 +95,7 @@
 		</form>
 	</div>
 	</div>
-	<div class="" style="margin-top:1%;margin-left:40%;margin-bottom:1%; width:80%">
+	<div class="" style="margin-top:1%;margin-left:20%;margin-bottom:1%; width:80%">
 		<%
 			try {
 			String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
@@ -111,23 +111,14 @@
 	        statement.setInt(1, user.getId());
 			ResultSet result = statement.executeQuery();
 			if(!result.isBeforeFirst()){%>
+				<div style="margin-left:20%">
 				<h2>You currently have no alerts set</h2>
+				</div>
 			<%}
 			while (result.next()) {%>
-		<div class="" style="margin-top:1%;margin-left:-30%;margin-bottom:1%; width:100%">	
-		<table class="table">
-		<thead class="thead-dark">
-		<tr>
-			<th>Type</th>
-			<th>Location</th>
-		</tr>
-		</thead>
-		<tr>
-			<td><%=result.getString("type") %></td>
-			<td><%=result.getString("city") %></td>
-			<td style="width:10%"><form action="deletealert" method="POST"><input type="hidden" name="id" value=<%=result.getInt("alertid")%>><button type="submit">Delete</button></form></td>
-		</tr>
-		</table>
+		<div class="" style="margin-top:1%;margin-left:0%;margin-bottom:0%; width:100%">	
+		<form action="deletealert" method="POST"><div style="font-size:20px"><%=result.getString("type") %> in <%=result.getString("city") %></div>
+		<input type="hidden" name="id" value=<%=result.getInt("alertid")%>><button type="submit" style="width:10%">Delete</button></form>
 				<% 
 				
 				String type = result.getString("type");
@@ -139,16 +130,14 @@
 				ResultSet result2 = statement2.executeQuery();
 				if(!result2.isBeforeFirst()){%>
 				
-						<h1>No reports found with these parameters</h1>
+						<h1>No reports found with these parameters</h1><br>
 				
 				<%}
 
 				while(result2.next()){
-					
 		%>
-		<br>
 		</div>
-		<div class="" style="margin-top:1%;margin-left:-30%;margin-bottom:1%; width:80%">
+		<div class="" style="margin-top:1%;margin-left:0%;margin-bottom:1%; width:80%">
 		<table class="table">
 		<thead class="thead-dark">
 		<tr>
@@ -170,7 +159,6 @@
 			<td><form action="userinfo" method="POST"><input type="hidden" name="id" value=<%=result2.getInt("reportid")%>><button type="submit">Get Info</button></form></td>
 		</tr>
 		</table>
-		<br>
 		<%
 				}
 		}

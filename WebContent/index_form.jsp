@@ -19,7 +19,7 @@
 	  <form class="register-form" action="register" method="post">
 		
 		<input type="text" placeholder="user name" name="user" required/>
-	    <input type="text" placeholder="password" name="password" required/>
+	    <input type="password" placeholder="password" name="password" required/>
 		<input type="text" placeholder="510-555-5555" name="phoneNumber"/>
 		<label>City</label>
 		<select name="city" required>
@@ -45,7 +45,7 @@
 	   </form>
       <form class="login-form" action="login" method="post">
 		<input type="text" placeholder="user name" name="user" required/>
-	    <input type="text" placeholder="password" name="password" required/>
+	    <input type="password" placeholder="password" name="password" required/>
 		<br>
 		<span class="warning">${message}</span> 
 		  <button type="submit">login</button>  
