@@ -82,9 +82,12 @@
                 <div class="columnFeed marginRgt5 marginLft">
 			   <h1>Announcement</h1>
 			   <h2>${message}</h2>
-                  <div class="ReportFeed" style="margin-bottom:1%">
+			   <%if(isAuth){ %>
+     			<div class="ReportFeed" style="margin-bottom:1%">
                      <button class="btn btn-warning btn-lg" onclick=myReportFeed() > Create New Announcement</button>
                   </div>
+     			<%} %>
+                  
                   <div class="ToogleReportFeed " style="margin-top:1%">
                      <div id="ReportFeed" class="ReportForm">
                         <form action="post" method="post">

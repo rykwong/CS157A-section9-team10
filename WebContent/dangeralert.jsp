@@ -163,7 +163,7 @@
 					  <thead class="thead-dark">
 					    <tr>
 					   		<th scope="col">User</th>
-					      <th scope="col">Id</th>
+			
 					      <th scope="col">Title</th>
 					      <th scope="col">Description</th>
 					       <th scope="col">Location</th>
@@ -241,7 +241,7 @@
 						<tr>
 						
 						<td><%=result.getString("username")%></td>
-						<th scope="row"><%=reportId %></th>
+						
 						<td><%=result.getString("title") %></td>
 						<td><%=result.getString("description") %></td>
 						<td><%=result.getString("location") %></td>

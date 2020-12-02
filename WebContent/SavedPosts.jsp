@@ -86,11 +86,11 @@ while(result.next())
 
 <% if(reports.size()!=0){ %>
 <div class="d-flex justify-content-center" style="margin-top:1%;margin-left:5%;margin-bottom:0; width:80%">
-	<h1>Admin Page</h1>
+	<h1>Saved Posts</h1>
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Id</th>
+     
       <th scope="col">Title</th>
       <th scope="col">Description</th>
        <th scope="col">Location</th>
@@ -105,7 +105,7 @@ while(result.next())
     <%for(int i = 0; i<reports.size();i++){%>
 		<tr>
 		<% Report report = (Report)reports.get(i); %>
-		  <th scope="row"><%=report.getId()%></th>
+
 			<td><%=report.getTitle()%></td>
 			<td><%=report.getDescription()%></td>
 			<td><%=report.getLocation()%></td>

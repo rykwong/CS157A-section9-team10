@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Alert Test Page</title>
+<title>Alert Page</title>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -54,10 +54,12 @@
      		   <li> <a class="nav-item nav-link active" style="display:block; padding:10px;font-size: 20px " href="index_form.jsp">Logout <span class="sr-only">(current)</span></a></li>
    		 </ul>
 			</nav>
-			
-	<h1 style="margin-top:1%;margin-left:40%; width:50%">Currently Set Alerts</h1>	
-	<div>${message}</div>	
-	<div class="d-flex justify-content-center" style="margin-top:1%;margin-left:20%;margin-right:20%; width:50%;position:relative;">		
+	<div style="margin-top:1%;margin-left:40%; width:50%">
+	<h1 >Currently Set Alerts</h1>	
+	<div>${message}</div>
+	</div>	
+	
+	<div  style="margin-top:1%;margin-left:40%; width:50%;">		
 	
 	<div class="form-group">
 		<form  action="alert" method="post">
@@ -89,11 +91,11 @@
 				<option value="Los Gatos">Los Gatos</option>
 			</select> 
 			<br>  
-			<input onclick="authorities.jsp" style="margin-top:10%"class="btn btn-primary btn-lg" type="submit" value="Submit">
+			<input onclick="authorities.jsp" style="margin-top:1%"class="btn btn-primary btn-lg" type="submit" value="Submit">
 		</form>
 	</div>
-	
-	
+	</div>
+	<div class="" style="margin-top:1%;margin-left:40%;margin-bottom:1%; width:80%">
 		<%
 			try {
 			String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
@@ -112,15 +114,18 @@
 				<h2>You currently have no alerts set</h2>
 			<%}
 			while (result.next()) {%>
-		<table>
+		<div class="" style="margin-top:1%;margin-left:-30%;margin-bottom:1%; width:100%">	
+		<table class="table">
+		<thead class="thead-dark">
 		<tr>
-			<td>Type</td>
-			<td>Location</td>
+			<th>Type</th>
+			<th>Location</th>
 		</tr>
+		</thead>
 		<tr>
 			<td><%=result.getString("type") %></td>
 			<td><%=result.getString("city") %></td>
-			<td><form action="deletealert" method="POST"><input type="hidden" name="id" value=<%=result.getInt("alertid")%>><button type="submit">Delete</button></form></td>
+			<td style="width:10%"><form action="deletealert" method="POST"><input type="hidden" name="id" value=<%=result.getInt("alertid")%>><button type="submit">Delete</button></form></td>
 		</tr>
 		</table>
 				<% 
@@ -133,27 +138,28 @@
 				statement2.setString(2,city);
 				ResultSet result2 = statement2.executeQuery();
 				if(!result2.isBeforeFirst()){%>
-				<table>
-					<tr>
-						<td>No reports found with these parameters</td>
-					</tr>
-				</table>
-				<br>
+				
+						<h1>No reports found with these parameters</h1>
+				
 				<%}
 
 				while(result2.next()){
 					
 		%>
 		<br>
-		<table border="1">
+		</div>
+		<div class="" style="margin-top:1%;margin-left:-30%;margin-bottom:1%; width:80%">
+		<table class="table">
+		<thead class="thead-dark">
 		<tr>
-			<td>User</td>
-			<td>Title</td>
-			<td>Description</td>
-			<td>Location</td>
-			<td>Date/Time</td>
-			<td>Type</td>
+			<th>User</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Location</th>
+			<th>Date/Time</th>
+			<th>Type</th>
 		</tr>
+		</thead>
 		<tr>
 			<td><%=result2.getInt("userid") %></td>
 			<td><%=result2.getString("title") %></td>
@@ -173,7 +179,7 @@
 		e.printStackTrace();
 		}
 		%>
-	
+	</div>
 </div>
 </body>
 </html>
