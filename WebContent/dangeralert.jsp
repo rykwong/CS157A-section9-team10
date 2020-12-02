@@ -245,8 +245,8 @@
 						<td><%=result.getString("title") %></td>
 						<td><%=result.getString("description") %></td>
 						<td><%=result.getString("location") %></td>
-						<td><%=result.getTimestamp("datetime") %></td>
 						<td><%=result.getString("type") %></td>
+						<td><%=result.getTimestamp("datetime") %></td>
 						<% if(!savedReportsId.contains(reportId)){ %>
 						<form method ="Post" action="SavePostButtonServlet"> 
 						<input type="hidden" id="reportId" name="reportId" value="<%=reportId %>">
