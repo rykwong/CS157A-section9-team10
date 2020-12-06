@@ -285,7 +285,15 @@
 						<%} %>
 						</form>
 						
+						<form method ="Post" action="ReplyButtonServlet"> 
+							<input type="hidden" id="reportId" name="reportId" value="<%=reportId %>">
+							<td>
+							<button type="submit" class="btn btn-secondary">Replies</button>
+							</td>
+						</form>
+						
 						</tr>
+						
 						<%
 						}			
 						connection.close();

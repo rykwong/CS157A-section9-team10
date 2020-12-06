@@ -65,7 +65,7 @@ public class DeleteReportServlet extends HttpServlet {
 	        	Statement statement = connection.createStatement();
 		        status = statement.executeUpdate(sql);
 	        }
-	        else {
+	        else if(action.equals("flagged")){
 	    		sql = "UPDATE Report SET flag=1 WHERE reportid=" + id;
 	    		Statement statement = connection.createStatement();
 	    		status = statement.executeUpdate(sql);
@@ -74,7 +74,21 @@ public class DeleteReportServlet extends HttpServlet {
 	        if(reason.equals("backToHome")) {
 	        	response.sendRedirect("dangeralert.jsp");
 	        }else {
-	        	 response.sendRedirect("DeleteDisplayServlet?s=" + status);
+	        	sql = "SELECT * FROM Admin WHERE userid=" + userId;
+	        	Statement statement = connection.createStatement();
+	        	ResultSet result = statement.executeQuery(sql);
+	        	int staffid;
+	        	if(result.next()) {
+	        		staffid = result.getInt("staffid");
+		        	sql = "INSERT INTO Action(staffid,reportid,reason,action) VALUES(?,?,?,?)";
+		        	PreparedStatement prepared = connection.prepareStatement(sql);
+		        	prepared.setInt(1,staffid);
+		        	prepared.setString(2,id);
+		        	prepared.setString(3,reason);
+		        	prepared.setString(4,action);
+		        	status = prepared.executeUpdate();
+	        	}
+	        	response.sendRedirect("DeleteDisplayServlet?s=" + status);
 	        }
 	       
 	        
