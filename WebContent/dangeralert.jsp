@@ -286,7 +286,7 @@
 						</form>
 						
 						<form method ="Post" action="ReplyButtonServlet"> 
-							<input type="hidden" id="reportId" name="reportId" value="<%=reportId %>">
+							<input type="hidden" id="id" name="id" value="<%=reportId %>">
 							<td>
 							<button type="submit" class="btn btn-secondary">Replies</button>
 							</td>
