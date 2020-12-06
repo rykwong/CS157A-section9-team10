@@ -41,11 +41,8 @@ public class UserReportServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String title = request.getParameter("title");
 		String type = request.getParameter("IncidentType");
-		String date = request.getParameter("date");
-		String time = request.getParameter("time");
 		String location = request.getParameter("location");
 		String description = request.getParameter("description");
-		String ai = request.getParameter("ai");
 		
 		ServletOutputStream os = response.getOutputStream();
 //		os.print(title);

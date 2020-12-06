@@ -270,6 +270,16 @@
 						<%} %>
 						</form>
 						
+						<% if(myOwnReportsId.contains(reportId)){ %>
+						<form method ="Post" action="edit"> 
+						<input type="hidden" id="id" name="id" value="<%=reportId %>">
+						
+						<td>
+						<button type="submit" class="btn btn-danger" >Edit</button> 
+						</td>
+						
+						<%} %>
+						</form>
 						
 						</tr>
 						<%
