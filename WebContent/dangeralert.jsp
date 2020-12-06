@@ -237,8 +237,12 @@
 				        
 						while(result.next()){
 							int reportId = result.getInt("reportid");
+							if(result.getInt("flag") ==1){
 						%>
+						<tr style = "color:red;">
+						<%}else {%>
 						<tr>
+						<%} %>
 						
 						<td><%=result.getString("username")%></td>
 						

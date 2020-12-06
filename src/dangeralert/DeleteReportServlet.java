@@ -66,7 +66,9 @@ public class DeleteReportServlet extends HttpServlet {
 		        status = statement.executeUpdate(sql);
 	        }
 	        else {
-	    		
+	    		sql = "UPDATE Report SET flag=1 WHERE reportid=" + id;
+	    		Statement statement = connection.createStatement();
+	    		status = statement.executeUpdate(sql);
 	        }
 	        
 	        if(reason.equals("backToHome")) {
