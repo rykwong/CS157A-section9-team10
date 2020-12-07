@@ -82,7 +82,7 @@ public class UserReportServlet extends HttpServlet {
 	        statement.setString(2, user.getPassword());
 	        status = statement.executeUpdate();
 	        */
-	        String sql = "INSERT INTO Report(title,description,location,datetime,type) VALUES(?,?,?,now(),?)";
+	        String sql = "INSERT INTO Report(title,description,location,datetime,type,flag) VALUES(?,?,?,now(),?,0)";
 	        PreparedStatement statement = connection.prepareStatement(sql);
 	        statement.setString(1, title);
 	        statement.setString(2, description);
