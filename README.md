@@ -2,7 +2,7 @@
 Danger Alert is a simple web application that enables everyday citizens in Santa Clara County to post reports of suspicious activity. This application caters to three types of users, normal users, law enforcement, and admins. 
 * Law enforcement are able to set alerts for certain types of crimes and get the contact information of the poster to follow up. 
 * Users are able to sort and filter posts based on city and can save posts to look at later. 
-* Admins would have access to posts and be able to take any down deemed misinformation or spam.
+* Admins would have access to posts and be able to take down any deemed misinformation or spam.
 
 The aim of this project was to develop an alternative to calling 911 for little things such as suspicious activity or petty crimes. This would hopefully lessen the load on 911, but still allow law enforcement to receive information on potential criminal activity.
 
