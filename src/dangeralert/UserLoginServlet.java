@@ -59,9 +59,9 @@ public class UserLoginServlet extends HttpServlet {
 	public User authenticate(String username,String password)
 	{
 		try {
-	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
-	        String dbUser = "root";
-	        String dbPassword = "9Cn99N54!";
+	        String jdbcURL = Auth.jdbcURL;
+	        String dbUser = Auth.dbUser;
+	        String dbPassword = Auth.dbPassword;
 	 
 	        Class.forName("com.mysql.jdbc.Driver");
 	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
@@ -103,9 +103,9 @@ public class UserLoginServlet extends HttpServlet {
 		 String userId = Integer.toString(user.getId());
 		try {
 			//out.println("in try");
-	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
-	        String dbUser = "root";
-	        String dbPassword = "9Cn99N54!";
+	        String jdbcURL = Auth.jdbcURL;
+	        String dbUser = Auth.dbUser;
+	        String dbPassword = Auth.dbPassword;
 	 
 	        Class.forName("com.mysql.jdbc.Driver");
 	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
@@ -147,9 +147,9 @@ public class UserLoginServlet extends HttpServlet {
 		 String userId = Integer.toString(user.getId());
 		try {
 			//out.println("in try");
-	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
-	        String dbUser = "root";
-	        String dbPassword = "9Cn99N54!";
+	        String jdbcURL = Auth.jdbcURL;
+	        String dbUser = Auth.dbUser;
+	        String dbPassword = Auth.dbPassword;
 	 
 	        Class.forName("com.mysql.jdbc.Driver");
 	        Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);

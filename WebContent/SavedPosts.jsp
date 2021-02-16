@@ -5,6 +5,7 @@
 <%@ page import = "java.sql.*" %>
 <%@ page import = "java.lang.*" %>
 <%@ page import = "dangeralert.*" %>
+<%@ page import = "dangeralert.Auth" %>
 
 <!DOCTYPE html>
 <html>
@@ -58,9 +59,9 @@
 <% ArrayList<Report> reports = new ArrayList<>();  
 
 User user = (User)request.getSession().getAttribute("user");
-String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
-String dbUser = "root";
-String dbPassword = "9Cn99N54!";
+String jdbcURL = Auth.jdbcURL;
+String dbUser = Auth.dbUser;
+String dbPassword = Auth.dbPassword;
 	
 Class.forName("com.mysql.jdbc.Driver");
 Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);

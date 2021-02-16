@@ -39,9 +39,9 @@ public class AnnouncementDeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
-        String dbUser = "root";
-        String dbPassword = "9Cn99N54!";
+		String jdbcURL = Auth.jdbcURL;
+        String dbUser = Auth.dbUser;
+        String dbPassword = Auth.dbPassword;
  
         
 		int status = 0;

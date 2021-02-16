@@ -41,9 +41,9 @@ public class DeleteButtonServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String reportId = request.getParameter("reportId");
 		try {
-	        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
-	        String dbUser = "root";
-	        String dbPassword = "9Cn99N54!";
+	        String jdbcURL = Auth.jdbcURL;
+	        String dbUser = Auth.dbUser;
+	        String dbPassword = Auth.dbPassword;
 	 
 	        Class.forName("com.mysql.jdbc.Driver");
 	        int status = 0;

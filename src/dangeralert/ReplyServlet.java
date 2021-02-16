@@ -41,9 +41,9 @@ public class ReplyServlet extends HttpServlet {
 		User user = (User)request.getSession().getAttribute("user");
 		Report report = (Report)request.getSession().getAttribute("replyreport");
 		String text = request.getParameter("reply");
-        String jdbcURL = "jdbc:mysql://localhost:3306/cs157a_project?serverTimezone=EST5EDT";
-        String dbUser = "root";
-        String dbPassword = "9Cn99N54!";
+        String jdbcURL = Auth.jdbcURL;
+        String dbUser = Auth.dbUser;
+        String dbPassword = Auth.dbPassword;
         int status = 0;
 		try {
 			
